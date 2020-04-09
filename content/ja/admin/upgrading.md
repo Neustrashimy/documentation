@@ -1,5 +1,5 @@
 ---
-title: Upgrading to a new release
+title: 新しいバージョンにアップグレードする
 menu:
   docs:
     weight: 70
@@ -7,68 +7,69 @@ menu:
 ---
 
 {{< hint style="info" >}}
-When a new version of Mastodon comes out, it appears on the [GitHub releases page](https://github.com/tootsuite/mastodon/releases). Please mind that running unreleased code from the `master` branch, while possible, is not recommended.
+Mastodonの新しいバージョンがリリースされると、[GitHubのリリースページ](https://github.com/tootsuite/mastodon/releases)に現れます。`master`ブランチのリリース前コードで動かすことは可能ですが推奨されません。
 {{< /hint >}}
 
-Mastodon releases correspond to git tags. Before attempting an upgrade, look up the desired release on the [GitHub releases page](https://github.com/tootsuite/mastodon/releases). The page will contain a **changelog** describing everything you need to know about what's different, as well as **specific upgrade instructions**.
+MastodonのリリースはGitタグに対応しています。アップグレードを行う前に、目的のリリースについて、[GitHubのリリースページ](https://github.com/tootsuite/mastodon/releases)で調べます。このページには、何が新しくなったのか知ることのできる**changelog**が含まれるほか、**アップグレード手順**も含まれます。
 
-To begin, switch to the `mastodon` user:
+始めるには、`mastodon`ユーザーに切り替えます：
 
 ```bash
 su - mastodon
 ```
 
-And navigate to the Mastodon root directory:
+Mastodonのルートディレクトリまで移動します：
 
 ```bash
 cd /home/mastodon/live
 ```
 
-Download the releases’s code, assuming that the version is called `v3.1.2`:
+リリースされたコードをダウンロードします。下記は`v3.1.2`を指定した場合です：
 
 ```bash
 git fetch --tags
 git checkout v3.1.2
 ```
 
-Now execute the upgrade instructions that are included in that version's release notes on GitHub. Because different releases require different instructions, we do not include any instructions on this page.
+GitHubのリリースノートに掛かれている、そのバージョンのアップグレード手順に従ってアップグレードを実行します。リリースごとに異なる手順が求められるため、このページでは記載しません。
+
 
 {{< hint style="info" >}}
-You can safely skip intermediate releases when upgrading from an old version. You do not need to individually check them out. However, you do need to keep track of the instructions with each release. Most instructions overlap, you just need to make sure you execute everything at least once.
+古いバージョンからアップグレードする場合は、中間バージョンをスキップすることができます。個別にチェックアウトする必要はありません。ただし、リリースごとに手順を追う必要があります。ほとんどの手順は重複していますが、少なくとも1回は全てを実行する必要があります。
 {{< /hint >}}
 
-After you have executed the instructions from the release notes, switch back to root:
+リリースノートに書かれた手順をすべて実行し終えたら、rootに戻ります：
 
 ```bash
 exit
 ```
 
-Restart **background workers**:
+**バックグラウンドワーカー** を再起動します:
 
 ```bash
 systemctl restart mastodon-sidekiq
 ```
 
-And reload the **web process**:
+そして**Webプロセス**を再読み込みします:
 
 ```bash
 systemctl reload mastodon-web
 ```
 
 {{< hint style="info" >}}
-The `reload` operation is a zero-downtime restart, also called "phased restart". As such, Mastodon upgrades usually do not require any advance notice to users about planned downtime. In rare cases, you can use the `restart` operation instead, but there will be a (short) felt interruption of service for your users.
+`reload`はダウンタイムなしで再起動することができ、"段階的再起動"とも呼ばれます。そのため、通常、Mastodonのアップグレードでは、計画的なダウンタイムについてユーザーに事前通知する必要はありません。`restart`も使用することができますが、ユーザーに対するサービスが（ごく短時間）中断されます。
 {{< /hint >}}
 
-Rarely, the **streaming API** server is also updated and requires a restart:
+稀ですが、**ストリーミング API** サーバーが更新された場合は再起動が必要になります：
 
 ```bash
 systemctl restart mastodon-streaming
 ```
 
 {{< hint style="danger" >}}
-The streaming API server is updated very rarely, and in most releases, does *not* require a restart. Restarting the streaming API leads to an increased load on your server as disconnected clients attempt to reconnect or poll the REST API instead, so avoid it whenever you can.
+ストリーミングAPIサーバーが更新されることはほとんどなく、ほとんどのリリースでは再起動は *必要ありません* 。ストリーミングAPIを再起動すると、切断されたクライアントが代わりにREST APIに再接続もしくはポーリングしようとするため、サーバーの負荷が増加します。可能なら回避してください。
 {{< /hint >}}
 
 {{< hint style="success" >}}
-**That’s all!** You’re running the new version of Mastodon now.
+**終わりです！** 新しいバージョンのMastodonが動いています。
 {{< /hint >}}

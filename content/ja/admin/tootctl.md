@@ -247,25 +247,25 @@ RAILS_ENV=production bin/tootctl help
 | Option | Description |
 | :--- | :--- |
 | `DOMAIN[...]` |削除するドメイン。複数指定する場合は、スペースで区切る。 |
-| `--whitelist_mode` | DOMAINの代わりに指定できる。Can be provided instead of DOMAIN. Instead of purging from a single domain, all accounts from domains that are not whitelisted will be removed from the database. Use this after enabling whitelist mode and defining your whitelist. |
-| `--concurrency N` | The number of workers to use for this task. Defaults to 5. |
-| `--verbose` | Print additional information while task is processing. |
-| `--dry_run` | Print expected results only, without performing any actions. |
+| `--whitelist_mode` | DOMAINの代わりに指定できる。ドメインをひとつひとつ消すのではなく、ホワイトリストに登録されていないアカウントのユーザーをデータベースから削除する。ホワイトリストモードを有効にし、ホワイトリストを定義した後に使用する。 |
+| `--concurrency N` | このタスクにいくつのワーカーを割り当てるか。規定値は N=5。 |
+| `--verbose` | タスク実行中に、追加の情報を表示する。 |
+| `--dry_run` | 期待される結果のみ出力し、実際には何も行わない。 |
 
 ### `tootctl domains crawl` {#domains-crawl}
 
-Crawl the known fediverse by using Mastodon REST API endpoints that expose all known peers, and collect statistics from those peers, as long as those peers support those API endpoints. When no START is given, the command uses the server's own database of known peers to seed the crawl. Returns total servers, total registered users, total active users in the last week, and total users joined in the last week.
+MastodonのREST APIを用いて、既知のフェディバースをクロールする。ピアがAPIエンドポイントをサポートしている場合は、統計情報の取得を試みる。STARTが指定されていない場合、コマンドはサーバーのデータベースにある既知のピアでクロールをシードする。全てのサーバー、登録ユーザーの合計、直近7日間のアクティブユーザーの合計、直近7日間の新規ユーザーの合計を連結して返す。
 
 **Version history:**
-2.7.0 - added
-3.0.0 - add `--exclude_suspended`
+2.7.0 - 追加
+3.0.0 - `--exclude_suspended` オプションを追加
 
 | Option | Description |
 | :--- | :--- |
-| START | Optionally start from a different domain name. |
-| `--concurrency N` | The number of workers to use for this task. Defaults to 50. |
-| `--format FORMAT` | Control how results are returned. `summary` will print a summary. `domains` will return a newline-delimited list of all discovered peers. `json` will dump aggregated raw data. Defaults to `summary`. |
-| `--exclude_suspended` | Do not include instances that you have suspended in the output. Also includes any subdomains. |
+| START | オプション。探索を開始するサーバーを指定する。|
+| `--concurrency N` | このタスクにいくつのワーカーを割り当てるか。規定値は N=50。 |
+| `--format FORMAT` | 探索結果の表示方法をコントロールする。`summary` は要約を表示、 `domains` は探索できたピアを改行で区切って表示、 `json`は集計された生データをJSON形式でダンプする。規定値は `summary`。 |
+| `--exclude_suspended` | ドメインブロックしたインスタンスを結果に含まない。除外対象にはサブドメインも含む。 |
 
 ## Emoji CLI {#emoji}
 
@@ -273,34 +273,34 @@ Crawl the known fediverse by using Mastodon REST API endpoints that expose all k
 
 ### `tootctl emoji import` {#emoji-import}
 
-Imports custom emoji from a .tar.gz archive at a given path. The archive should contain PNG or GIF files no larger than 50KB, and the shortcode will be set equal to the filename minus the extension, with optional prefixes and/or suffixes.
+カスタム絵文字を指定されたパスにある .tar.gz アーカイブファイルからインポートする。 アーカイブには、50KB以下のPNGもしくはGIFファイルを含める。ショートコードとしてファイル名から拡張子を除いたものが使われる。また、ショートコードにはオプションのプレフィックス・サフィックスが追加される。
 
 **Version history:**
-2.5.0 - added
+2.5.0 - 追加
 
 | Option | Description |
 | :--- | :--- |
-| `PATH` | Path to a .tar.gz archive containing pictures. |
-| `--prefix PREFIX` | Add PREFIX to the beginning of generated shortcodes. |
-| `--suffix SUFFIX` | Add SUFFIX to the end of generated shortcodes. |
-| `--overwrite` | Instead of skipping existing emoji, replace them with any discovered emoji with the same shortcode. |
-| `--unlisted` | Processed emoji will not be shown in the emoji picker, but will be usable only by their direct shortcode. |
-| `--category CATEGORY` | Group the processed emoji under CATEGORY in the picker. |
+| `PATH` | 画像が含まれる .tar.gz アーカイブへのパス |
+| `--prefix PREFIX` | PREFIX を生成されたショートコードの先頭に付加する。|
+| `--suffix SUFFIX` | SUFFIX を生成されたショートコードの末尾に付加する。 |
+| `--overwrite` | 既存の絵文字を残すのではなく、同じショートコードを使っている絵文字をすべて置き換える。 |
+| `--unlisted` | 絵文字ピッカーには表示せず、ショートコードの直接入力でのみ使用可能とする。 |
+| `--category CATEGORY` | 絵文字ピッカーのカテゴリーグループを指定する。|
 
 ### `tootctl emoji purge` {#emoji-purge}
 
-Remove all custom emoji.
+すべてのカスタム絵文字を消す。
 
 **Version history:**
-3.1.0 - add `--remote_only`
+3.1.0 - `--remote_only` オプションを追加
 
 | Option | Description |
 | :--- | :--- |
-| `--remote_only` | If provided, remove only from remote domains. |
+| `--remote_only` | これを指定した場合、リモートドメインの絵文字のみ削除する。 |
 
 
 **Version history:**
-2.8.0 - added
+2.8.0 - 追加
 
 ## Feeds CLI {#feeds}
 
@@ -308,25 +308,25 @@ Remove all custom emoji.
 
 ### `tootctl feeds build` {#feeds-build}
 
-Build home and list feeds for one or all users. Feeds will be built from the database and cached in-memory with Redis. Mastodon manages home feeds for active users automatically.
+すべてのユーザーのホームタイムライン・リストフィードを生成する。フィードはデータベースから生成され、Redisのインメモリにキャッシュされる。Mastodonはアクティブユーザーのホームフィードを自動的に管理する。
 
 **Version history:**
-2.6.0 - added
+2.6.0 - 追加
 
 | Option | Description |
 | :--- | :--- |
-| `USERNAME` | Local username whose feeds will be regenerated. |
-| `--all` | Can be provided instead of USERNAME to refresh all local accounts' feeds. |
-| `--concurrency N` | The number of workers to use for this task. Defaults to N=5. |
-| `--verbose` | Print additional information while task is processing. |
-| `--dry_run` | Print expected results only, without performing any actions. |
+| `USERNAME` | フィードを再生成するローカルユーザー名。 |
+| `--all` | USERNAMEの代わりに指定できる。すべてのローカルアカウントのフィードを再生成する。 |
+| `--concurrency N` | このタスクにいくつのワーカーを割り当てるか。規定値は N=5。 |
+| `--verbose` | タスク実行中に、追加の情報を表示する。 |
+| `--dry_run` | 期待される結果のみ出力し、実際には何も行わない。 |
 
 ### `tootctl feeds clear` {#feeds-clear}
 
-Remove all home and list feeds from Redis.
+Redisからすべてのホームタイムラインおよびリストフィードをクリアする。
 
 **Version history:**
-2.6.0 - added
+2.6.0 - 追加
 
 ## Media CLI {#media}
 
@@ -334,62 +334,62 @@ Remove all home and list feeds from Redis.
 
 ### `tootctl media remove` {#media-remove}
 
-Remove locally cached copies of media attachments from other servers.
+他のサーバーからコピーされたメディアファイルのローカルキャッシュを削除する。
 
 **Version history:**
-2.5.0 - added
-2.6.2 - show freed disk space
+2.5.0 - 追加
+2.6.2 - 確保された空き容量を表示するようになった
 
 | Option | Description |
 | :--- | :--- |
-| `--days` | How old media attachments have to be before they are removed. Defaults to 7. |
-| `--concurrency N` | The number of workers to use for this task. Defaults to 5. |
-| `--verbose` | Print additional information while task is processing. |
-| `--dry_run` | Print expected results only, without performing any actions. |
+| `--days` | どの程度古いメディアファイルを削除対象とするか。デフォルトは 7 (日)。 |
+| `--concurrency N` | このタスクにいくつのワーカーを割り当てるか。規定値は N=5。 |
+| `--verbose` | タスク実行中に、追加の情報を表示する。 |
+| `--dry_run` | 期待される結果のみ出力し、実際には何も行わない。 |
 
 ### `tootctl media remove-orphans` {#media-remove-orphans}
 
-Scans for files that do not belong to existing media attachments, and remove them. Please mind that some storage providers charge for the necessary API requests to list objects. Also, this operation requires iterating over every single file individually, so it will be slow.
+どこにも属していないメディアファイルをスキャンし、削除する。いくつかのストレージプロバイダはオブジェクトをリスト表示するために料金がかかることに注意すること。また、この操作は個々のファイルごとに処理を行うため、低速になる。
 
 **Version history:**
-3.1.0 - added
+3.1.0 - 追加
 
 | Option | Description |
 | :--- | :--- |
-| `--start_after` | The Paperclip attachment key where the loop will start. Use this option if the command was interrupted before. |
-| `--dry_run` | Print expected results only, without performing any actions. |
+| `--start_after` | 指定されたPaperclipの添付キーからループを開始する。このオプションは処理を中断した場合に使用する。 |
+| `--dry_run` | 期待される結果のみ出力し、実際には何も行わない。 |
 
 ### `tootctl media refresh` {#media-refresh}
 
-Refetch remote media attachments from other servers. You must specify the source of media attachments with either --status, --account, or --domain. If an attachment already exists in the database, it will not be overwritten unless you use --force.
+他のサーバーからメディアファイルを再取得する。メディアファイルのソースを --status、--account、--domain のいずれかから指定する必要がある。もしメディアファイルがすでにデータベース上に存在する場合、 --force を使わない限り上書きされません。
 
 **Version history:**
-3.0.0 - added
-3.0.1 - add `--force` and skip already downloaded attachments by default
+3.0.0 - 追加
+3.0.1 - `--force` オプションが追加され、すでに存在するメディアファイルはデフォルトでスキップされるようになった
 
 | Option | Description |
 | :--- | :--- |
-| `--account ACCT` | String `username@domain` handle of the account |
-| `--domain DOMAIN` | FQDN string |
-| `--status ID` | Local numeric ID of the status in the database. |
-| `--concurrency N` | The number of workers to use for this task. Defaults to 5. |
-| `--verbose` | Print additional information while task is processing.  |
-| `--dry_run` | Print expected results only, without performing any actions. |
-| `--force` | Force redownload the remote resource and overwrite the local attachment. |
+| `--account ACCT` | `username@domain` 形式のアカウントのハンドル文字列 |
+| `--domain DOMAIN` | FQDN 文字列 |
+| `--status ID` | ローカルのStatus ID |
+| `--concurrency N` | このタスクにいくつのワーカーを割り当てるか。規定値は N=5。 |
+| `--verbose` | タスク実行中に、追加の情報を表示する。 |
+| `--dry_run` | 期待される結果のみ出力し、実際には何も行わない。 |
+| `--force` | 強制的にリモートのリソースを再ダウンロードし、ローカルのデータを上書きする。 |
 
 ### `tootctl media usage` {#media-usage}
 
-Calculate disk space consumed by Mastodon.
+Mastodonによって試用されているディスク容量を計算する。
 
 **Version history:**
-3.0.1 - added
+3.0.1 - 追加
 
 ### `tootctl media lookup` {#media-lookup}
 
-Prompts for a media URL, then looks up where the media is displayed.
+media URLを入力するプロンプトを表示し、メディアがどこに表示されているか検索する。
 
 **Version history:**
-3.1.0 - added
+3.1.0 - 追加
 
 ## Preview Cards CLI {#preview_cards}
 
@@ -397,18 +397,18 @@ Prompts for a media URL, then looks up where the media is displayed.
 
 ### `tootctl preview_cards remove` {#preview_cards-remove}
 
-Remove local thumbnails for preview cards.
+ローカルのプレビューカードのサムネイルを削除する。
 
 **Version history:**
-3.0.0 - added
+3.0.0 - 追加
 
 | Option | Description |
 | :--- | :--- |
-| `--days` | How old media attachments have to be before they are removed. Defaults to 180. \(NOTE: it is not recommended to delete preview cards within the last 14 days, because preview cards will not be refetched unless the link is reposted after 2 weeks from last time.\) |
-| `--concurrency N` | The number of workers to use for this task. Defaults to 5. |
-| `--verbose` | Print additional information while task is processing. |
-| `--dry_run` | Print expected results only, without performing any actions. |
-| `--link` | Only delete link-type preview cards; leave video and photo cards untouched. |
+| `--days` | どの程度古いメディアファイルを削除対象とするか。デフォルトは180（日）。（14日以内のプレビューカードを削除することは推奨されません。なぜなら2週間以内に再投稿されたプレビューカードは再取得されないためです。） |
+| `--concurrency N` | このタスクにいくつのワーカーを割り当てるか。規定値は N=5。 |
+| `--verbose` | タスク実行中に、追加の情報を表示する。 |
+| `--dry_run` | 期待される結果のみ出力し、実際には何も行わない。 |
+| `--link` | リンクタイプのプレビューカードのみ対象とし、動画・画像タイプのプレビューカードを残す。 |
 
 ## Search CLI {#search}
 
@@ -416,15 +416,15 @@ Remove local thumbnails for preview cards.
 
 ### `tootctl search deploy` {#search-deploy}
 
-Create or update an ElasticSearch index and populate it. If ElasticSearch is empty, this command will create the necessary indices and then import data from the database into those indices. This command will also upgrade indices if the underlying schema has been changed since the last run.
+ElasticSearchのインデックスを作成・更新し、投入する。もしElasticSearchが空であれば、このコマンドは必要なインデックスを作成し、データベースからデータをインポートする。このコマンドは、元となるスキーマが更新された場合にもインデックスをアップグレードする。
 
 **Version history:**
-2.8.0 - added
-3.0.0 - add `--processes` for parallelization
+2.8.0 - 追加
+3.0.0 - 並列実行のため `--processes` オプションが追加された
 
 | Option | Description |
 | :--- | :--- |
-| `--processes N` | Parallelize execution of the command. Defaults to N=2. Can also specify `auto` to derive a number based on available CPUs. |
+| `--processes N` | コマンドの並列実行数。デフォルトは N=2。`auto`を指定すると、利用可能なCPUに基づいた値を使用する。 |
 
 ## Settings CLI {#settings}
 
@@ -432,14 +432,14 @@ Create or update an ElasticSearch index and populate it. If ElasticSearch is emp
 
 ### `tootctl settings registrations open` {#settings-registrations-open}
 
-Opens registrations.
+新規登録を可能にする。
 
 **Version history:**
-2.6.0 - added
+2.6.0 - 追加
 
 ### `tootctl settings registrations close` {#settings-registrations-close}
 
-Closes registrations.
+新規登録を不可能にする。
 
 **Version history:**
 2.6.0 - added
@@ -450,14 +450,13 @@ Closes registrations.
 
 ### `tootctl statuses remove` {#statuses-remove}
 
-Remove unreferenced statuses from the database, such as statuses that came from relays or from users who are no longer followed by any local accounts, and have not been replied to or otherwise interacted with.
-
-This is a computationally heavy procedure that creates extra database indices before commencing, and removes them afterward.
+ローカルの誰からもフォローされていない外部ユーザーの投稿や、リプライやその他のアクションが行われていないものなど、どこからも参照されていない投稿をデータベースから削除する。
+これは計算量の多い処理であり、データベースに一時的なインデックスを作成し、終わったらインデックスを削除する。
 
 **Version history:**
-2.8.0 - added
+2.8.0 - 追加
 
 | Option | Description |
 | :--- | :--- |
-| `--days` | How old statuses have to be before they are removed. Defaults to 90. |
+| `--days` | どの程度古い投稿を削除対象とするか。デフォルトは 90 (日)。 |
 
