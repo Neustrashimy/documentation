@@ -1,5 +1,5 @@
 ---
-title: Setting up your new instance
+title: 新しいインスタンスをセットアップする
 description: Things to do after installing Mastodon
 menu:
   docs:
@@ -7,19 +7,21 @@ menu:
     parent: admin
 ---
 
-## Creating an admin account {#admin}
+## 管理者アカウントを作成する {#admin}
 
-### In the browser {#admin-gui}
+### ブラウザから {#admin-gui}
 
-After signing up in the browser, you will need to use the command line to give your newly created account admin privileges. Assuming your username is `alice`:
+ブラウザから登録したあと、コマンドラインから新しく作ったアカウントに管理者特権を与えます。
+ユーザー名が`alice`の場合は、下記の通りにします：
+
 
 ```bash
 RAILS_ENV=production bin/tootctl accounts modify alice --role admin
 ```
 
-### From the command line {#admin-cli}
+### コマンドラインから {#admin-cli}
 
-You can create a new account using the command-line interface.
+コマンドラインから新しいアカウントを作成することができます。
 
 ```bash
 RAILS_ENV=production bin/tootctl accounts create \
@@ -29,18 +31,19 @@ RAILS_ENV=production bin/tootctl accounts create \
   --role admin
 ```
 
-A randomly generated password will be shown in the terminal.
+ランダムに生成されたパスワードがターミナルに表示されます。
 
-## Filling in server information {#info}
+## サーバー情報を設定する {#info}
 
-After logging in, navigate to the **Site settings** page. While there are no technical requirements for filling in this information, it is considered crucial for operating a server for humans.
+ログインしたら、**サイト設定**ページに移動します。 この情報を設定するのに技術的なことは必要ありませんが、人のためのサーバーを運用するためには重要な情報です。
+
 
 | Setting | Meaning |
 | :--- | :--- |
-| Contact username | Your username so people know who owns the server |
-| Business e-mail | An e-mail address so people locked out of their accounts, or people without accounts, can contact you |
-| Instance description | Why did you start this server? Who is it for? What makes it different? |
-| Custom extended information | You can put all sorts of information in here but a **code of conduct** is recommended |
+| 連絡先ユーザー名 | 誰がサーバーを管理しているのか知らせるため、あなたのユーザー名を記入します |
+| ビジネスメールアドレス | アカウントを持っていない、ログインできなくなったユーザーがあなたに連絡を取るためのメールアドレスです |
+| 短いサーバーの説明 | どうしてサーバーを動かそうとおもいましたか？誰のためのものですか？他との違いは？ |
+| サーバーの説明 | ここには様々な情報を記入することができますが、行動規範を記入することをおすすめします。 |
 
-After you fill these in, simply hit “Save changes”.
+入力し終わったら、"変更を保存"ボタンを押します。
 

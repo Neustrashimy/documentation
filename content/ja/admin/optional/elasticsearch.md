@@ -1,5 +1,5 @@
 ---
-title: Full-text search
+title: 全文検索
 description: Setting up ElasticSearch to search for statuses authored, favourited, or mentioned in.
 menu:
   docs:
@@ -7,17 +7,18 @@ menu:
     parent: admin-optional
 ---
 
-Mastodon supports full-text search when it ElasticSearch is available. Mastodon’s full-text search allows logged in users to find results from their own toots, their favourites, and their mentions. It deliberately does not allow searching for arbitrary strings in the entire database.
+ElasticSearchが使用できるとき、Mastodonは全文検索をサポートします。Mastodonの全文検索はログインしたユーザーが使用でき、自身のトゥート、お気に入り、メンションを検索することができます。意図的にデータベース全体の検索をできなくしています。
 
-## Installing ElasticSearch {#install}
 
-ElasticSearch requires a Java runtime. If you don’t have Java already installed, do it now. Assuming you are logged in as `root`:
+## ElasticSearchのインストール {#install}
+
+ElasticSearchはJavaランタイムを必要とします。もしJavaのインストールがまだなら、やってしまいましょう。`root`でログインしていることを確認してください：
 
 ```bash
 apt install openjdk-8-jre-headless
 ```
 
-Add the official ElasticSearch repository to apt:
+ElasticSearchのオフィシャルリポジトリを追加します
 
 ```bash
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
@@ -25,26 +26,26 @@ echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | tee -a /e
 apt update
 ```
 
-Now you can install ElasticSearch:
+ElasticSearchのインストールができるようになりました：
 
 ```bash
 apt install elasticsearch
 ```
 
 {{< hint style="warning" >}}
-**Security warning:** By default, ElasticSearch is supposed to bind to localhost only, i.e. be inaccessible from the outside network. You can check which address ElasticSearch binds to by looking at `network.host` within `/etc/elasticsearch/elasticsearch.yml`. Consider that anyone who can access ElasticSearch can access and modify any data within it, as there is no authentication layer. So it’s really important that the access is secured. Having a firewall that only exposes the 22, 80 and 443 ports is advisable, as outlined in the [main installation instructions](). If you have a multi-host setup, you must know how to secure internal traffic.
+**セキュリティ警告：** デフォルトでは、ElasticSearchはlocalhostのみにバインドされており、外部からはアクセスできません。ElasticSearchがどのアドレスにバインドしているかは`/etc/elasticsearch/elasticsearch.yml`内の`network.host`を見れば確認ができます。認証の仕組みがないため、ElasticSearchにアクセスできる人は誰でもデータにアクセスしたり変更したりすることができます。そのため、アクセスの保護はとても重要です。メインのインストール手順で触れられているように、22・80・443ポートのみを解放しているファイアウォールを設置することが推奨されます。マルチホストの設定をしている場合は、内部トラフィックを保護する方法についても知っておく必要があります。
 {{< /hint >}}
 
-To start ElasticSearch:
+ElasticSearchを開始します:
 
 ```bash
 systemctl enable elasticsearch
 systemctl start elasticsearch
 ```
 
-## Configuring Mastodon {#config}
+## Mastodonの設定 {#config}
 
-Edit `.env.production` to add the following variables:
+`.env.production`を編集し、次の値を追加します：
 
 ```bash
 ES_ENABLED=true
@@ -52,28 +53,28 @@ ES_HOST=localhost
 ES_PORT=9200
 ```
 
-If you have multiple Mastodon servers on the same machine, and you are planning to use the same ElasticSearch installation for all of them, make sure that all of them have unique `REDIS_NAMESPACE` in their configurations, to differentiate the indices. If you need to override the prefix of the ElasticSearch index, you can set `ES_PREFIX` directly.
+もし、複数のMastodonサーバーが同じマシンに同居しており、全てのサーバーで同じElasticSearchのインストールを使用する場合、インデックスを区別するために`REDIS_NAMESPACE`が設定されていることを確認してください。ElasticSearchのインデックスのプレフィックスを上書きする必要がある場合は、`ES_PREFIX`を直接指定することができます。
 
-After saving the new configuration, create the index in ElasticSearch with:
+新たな設定値を保存したら、ElasticSearchのインデックスを作成します：
 
 ```bash
 RAILS_ENV=production bundle exec rake chewy:upgrade
 ```
 
-Then restart Mastodon processes for the new configuration to take effect:
+新しい設定を有効にするために、Mastodonプロセスを再起動します：
 
 ```bash
 systemctl restart mastodon-sidekiq
 systemctl reload mastodon-web
 ```
 
-Now new statuses will be written to the ElasticSearch index. The last step is importing all of the old data as well. This might take a long while:
+新しい投稿がElasticSearchのインデックスに書き込まれているはずです。最後の手順は、すべての古いデータをインポートすることです。これは時間がかかります：
 
 ```bash
 RAILS_ENV=production bundle exec rake chewy:sync
 ```
 
 {{< hint style="warning" >}}
-**Compatibility note:** There is a known bug in Ruby 2.6.0 that prevents the above task from working. Other versions of Ruby, such as 2.6.1, are fine.
+**互換性情報：** Ruby 2.6.0には既知のバグがあり、上記のタスクが正常に動作しません。2.6.1のような他のバージョンのRubyでは問題ありません。
 {{< /hint >}}
 
