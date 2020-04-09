@@ -1,5 +1,5 @@
 ---
-title: OAuth Scopes
+title: OAuth スコープ
 description: Defining what you have permission to do with the API
 menu:
   docs:
@@ -7,9 +7,11 @@ menu:
     parent: api
 ---
 
-## OAuth Scopes
+## OAuth スコープ
 
-The API is divided up into access scopes. The scopes are hierarchical, i.e. if you have access to `read`, you automatically have access to `read:accounts`. **It is recommended that you request as little as possible for your application.**
+APIはアクセススコープに分かれています。スコープは段階的で、`read`のアクセス権を持っている場合、自動的に`read:accounts`へのアクセス権も得ていることになります。**アプリケーションには最低限のリクエストをすることをお勧めします。**
+
+同時に複数のスコープをリクエストすることができます： 
 
 Multiple scopes can be requested at the same time: During app creation with the `scopes` param, and during the authorization phase with the `scope` query param \(space-separate the scopes\).
 
