@@ -1,5 +1,5 @@
 ---
-title: Rate limits
+title: レートリミット
 description: Defining how often you can hit the REST API
 menu:
   docs:
@@ -7,25 +7,26 @@ menu:
     parent: api
 ---
 
-Rate limit information is returned in the response headers:
+
+レートリミット情報はレスポンスヘッダで返されます：
 
 |Header|Description|
 | :--- | :--- |
-|`X-RateLimit-Limit`|Number of requests permitted per time period|
-|`X-RateLimit-Remaining`|Number of requests you can still make|
-|`X-RateLimit-Reset`|Timestamp when your rate limit will reset|
+|`X-RateLimit-Limit`|一定期間に許可されたリクエストの数|
+|`X-RateLimit-Remaining`|リクエストできる残数|
+|`X-RateLimit-Reset`|レートリミットがリセットされるタイムスタンプ|
 
 {{< hint style="info" >}}
-Mind that an API method can be subject to multiple overlapping rate limits. The headers return information about the one you are closest to exceeding.
+APIメソッドは複数のレートリミットの影響を受ける可能性があります。ヘッダーは最も近い制限数を返します。
 {{</ hint >}}
 
-Here is a list of various rate limits:
+レートリミットの種類です：
 
 |Endpoint|Bucket|Time period|Limit|Limit type|
 | :--- | :--- | :--- | :--- | :--- |
-|`* /api/*`|Account access|5 minutes|300|Account|
-|`* /api/*`|IP access|5 minutes|300|IP|
-|`POST /api/v1/accounts`|App sign-up|30 minutes|5|IP|
-|`POST /api/v1/media`|Uploading|30 minutes|30|Account|
-|`DELETE /api/v1/statuses/:id`|Deletion|30 minutes|30|Account|
-|`POST /api/v1/statuses/:id/unreblog`|Deletion|30 minutes|30|Account|
+|`* /api/*`|Account access|5 分|300|Account|
+|`* /api/*`|IP access|5 分|300|IP|
+|`POST /api/v1/accounts`|App sign-up|30 分|5|IP|
+|`POST /api/v1/media`|Uploading|30 分|30|Account|
+|`DELETE /api/v1/statuses/:id`|Deletion|30 分|30|Account|
+|`POST /api/v1/statuses/:id/unreblog`|Deletion|30 分|30|Account|
