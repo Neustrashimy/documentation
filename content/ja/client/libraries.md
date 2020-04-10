@@ -1,5 +1,5 @@
 ---
-title: Libraries and implementations
+title: ライブラリと実装
 description: Interface with the Mastodon API in the programming language of your choice.
 menu:
   docs:
