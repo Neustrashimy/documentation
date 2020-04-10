@@ -1,5 +1,5 @@
 ---
-title: Obtaining client app access
+title: クライアントアプリアクセスの取得
 description: Getting accustomed to the basics of authentication and authorization.
 menu:
   docs:
@@ -7,15 +7,15 @@ menu:
     parent: client
 ---
 
-## Authentication and authorization {#auth}
+## 認証と承認 {#auth}
 
-Up until this point, we've been working with publicly available information, but not all information is public. Some information requires permission before viewing it, in order to audit who is requesting that information \(and to potentially revoke or deny access\).
+これまでは公開されている情報を使用してきましたが、すべての情報が公開されているわけではありません。一部の情報は、誰がその情報を要求したか監査するために、閲覧する前に許可が必要になります（そして許可の取消し、拒否をする可能性があります）。
 
-This is where [OAuth]({{< relref "../spec/oauth.md" >}}) comes in. OAuth is a mechanism for generating access tokens which can be used to _authenticate \(verify\)_ that a request is coming from a specific client, and ensure that the requested action is _authorized \(allowed\)_ by the server's access control policies.
+ここで [OAuth]({{< relref "../spec/oauth.md" >}}) の出番です。OAuthは、リクエストが特定のクライアントからのものであることを _認証（Authenticate） （検証）_ し、リクエストされたアクションがサーバーのアクセス制御ポリシーによって _承認（Authorized）（許可）_ されることを保証するために使用できるアクセストークンを生成するメカニズムです。
 
-## Creating our application {#app}
+## アプリを作る {#app}
 
-The first thing we will need to do is to register an application, in order to be able to generate access tokens later. The application can be created like so:
+最初にすることは、アクセストークンを生成できるようにするために、アプリを登録することです。次のようにします：
 
 ```bash
 curl -X POST \
@@ -26,16 +26,17 @@ curl -X POST \
 	https://mastodon.example/api/v1/apps
 ```
 
-In the above example, we specify the client name and website, which will be shown on statuses if applicable. But more importantly, note the following two parameters:
+上記の例では、クライアント名とWebサイトを指定しています。これは投稿に表示されます。ただし、さらに重要なこととして、次の2つのパラメーターに注意してください：
 
-* `redirect_uris` has been set to the "out of band" token generation, which means that any generated tokens will have to be copied and pasted manually. The parameter is called `redirect_uris` because it is possible to define more than one redirect URI, but when generating the token, we will need to provide a URI that is included within this list.
-* `scopes` allow us to define what permissions we can request later. However, the requested scope later can be a subset of these registered scopes. See [OAuth Scopes](../api/oauth-scopes.md) for more information.
+* `redirect_uris` は、"アウトオブバンド"のトークン生成に設定されています。これは、生成されたトークンを主導でコピー＆ペーストする必要があるということです。複数のリダイレクトURIを設定できるため、このパラメーターは`redirect_uris`と呼ばれます。トークンを生成するときに、このリストに含まれるURIを提供する必要があります。
+* `scopes` を使用すると、後で要求できる権限を定義できます。ただし、後で要求されたスコープは、これらの登録済みのスコープのサブセットになる場合があります。詳しくは [OAuth Scopes](../api/oauth-scopes.md) を参照してください。
 
-We should see an Application entity returned, but for now we only care about client\_id and client\_secret. These values will be used to generate access tokens, so they should be cached for later use. See [POST /api/v1/apps](../methods/apps/#create-an-application) for more details on registering applications.
+Applicatonエンティティが返されているはずですが、ここでは client\_id と client\_secret について考慮します。それらの値はアクセストークンの生成に使用されるため、一時的に保存しておく必要があります。アプリの登録について、詳しくは [POST /api/v1/apps](../methods/apps/#create-an-application) を参照してください。
 
-## Example authentication code flow {#flow}
 
-Now that we have an application, let's obtain an access token that will authenticate our requests as that client application. To do so, use [POST /oauth/token](../methods/apps/oauth.md#obtain-a-token) like so:
+## 認証コードフローの例 {#flow}
+
+これでアプリの登録ができたので、リクエストをそのクライアントアプリとして認証するため、[POST /oauth/token](../methods/apps/oauth.md#obtain-a-token) を使用してアクセストークンを取得しましょう：
 
 ```bash
 curl -X POST \
@@ -46,13 +47,14 @@ curl -X POST \
 	https://mastodon.example/oauth/token
 ```
 
-Note the following:
+次の点に注意してください：
 
-* `client_id` and `client_secret` were provided in the response text when you registered your application.
-* `redirect_uri` must be one of the URIs defined when registering the application.
-* We are requesting a `grant_type` of `client_credentials`, which defaults to giving us the `read` scope.
+* `client_id` と `client_secret` は、アプリを登録した時のレスポンスに記載されています。
+* `redirect_uri` は、アプリ登録時に設定したURIのうち1つでなければなりません。
+* `grant_type` の `client_credentials` を要求していますが、デフォルトでは `read` スコープが与えられています。
 
-The response of this method is a [Token]({{< relref "../entities/token.md" >}}) entity. We will need the `access_token` value. Once you have the access token, save it in your local cache. To use it in requests, add the HTTP header `Authorization: Bearer ...` to any API call that requires OAuth \(i.e., one that is not publicly accessible\). Let's verify that our obtained credentials are working by calling [GET /api/v1/apps/verify\_credentials](../methods/apps/#verify-your-app-works):
+このメソッドの戻り値は [Token]({{< relref "../entities/token.md" >}}) エンティティです。`access_token`の値が必要となります。アクセストークンを取得したら、ローカルキャッシュに保存してください。これをリクエストで使う場合は、OAuthが必要なAPI（公開アクセスできないもの）を呼び出すとき、HTTPヘッダーに`Authorization: Bearer ...` を追加します。取得した認証情報の検証のため、[GET /api/v1/accounts/verify\_credentials](../methods/accounts/#verify-account-credentials) を呼び出します：
+
 
 ```bash
 curl \
@@ -60,9 +62,8 @@ curl \
 	https://mastodon.example/api/v1/apps/verify_credentials
 ```
 
-If we've obtained our token and formatted our request correctly, we should see our details returned to us as an [Application]({{< relref "../entities/application.md" >}}) entity.
+トークンを取得し、正しくリクエストをフォーマットできていれば、 `source`パラメータが含まれた詳細な [Account]({{< relref "../entities/account.md" >}}) エンティティが返されます。
 
-## What we can do with authentication {#methods}
+## 認証するとできること {#methods}
 
-With our authenticated client application, we can view relations of an account with [GET /api/v1/accounts/:id/following](../methods/accounts/#following) and [GET /api/v1/accounts/:id/followers](../methods/accounts/#followers). Also, some instances may require authentication for methods that would otherwise be public, so if you encountered any authentication errors while playing around with public methods, then those methods should now work.
-
+認証されたクライアントアプリでは、アカウントのリレーションシップを [GET /api/v1/accounts/:id/following](../methods/accounts/#following) と [GET /api/v1/accounts/:id/followers](../methods/accounts/#followers) で見ることができます。また、一部のインスタンスでは、他では公開である部分にも認証が必要である場合があるため、公開メソッドで遊んでいる時に認証エラーが発生した場合、それらを動作させることができるようになるはずです。
