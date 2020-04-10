@@ -76,7 +76,7 @@ curl \
 	https://mastodon.example/api/v1/accounts/verify_credentials
 ```
 
-トークンを取得し、正しくリクエストを整形できていれば、 `source`パラメータが含まれた詳細な [Account]({{< relref "../entities/account.md" >}}) エンティティが返されます。
+トークンを取得し、正しくリクエストをフォーマットできていれば、 `source`パラメータが含まれた詳細な [Account]({{< relref "../entities/account.md" >}}) エンティティが返されます。
 
 
 ## 認証されたユーザーとして振舞う {#actions}
