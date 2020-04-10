@@ -1,5 +1,5 @@
 ---
-title: Playing with public data
+title: 公開データで遊ぶ
 description: Familiarizing yourself with endpoints and entities.
 menu:
   docs:
@@ -7,31 +7,33 @@ menu:
     parent: client
 ---
 
-Now that you know how to construct HTTP requests using cURL or your favorite programming language's HTTP utility or library, it is time to learn about endpoints and responses.
+cURLやプログラミング言語のHTTPユーティリティもしくはライブラリを使用して、HTTPリクエストを生成する方法を理解したので、次に、エンドポイントとレスポンスについて学習します。
 
-## Endpoints explained {#endpoints}
+## エンドポイントの説明 {#endpoints}
 
-All HTTP requests are made against a target URL. When you request data to or from a website, you do so by using a specific URL. Depending on the URL, your request will be interpreted by the HTTP server and the appropriate response will be returned to you.
+すべてのHTTPリクエストは、ターゲットURLに対して行われます。ウェブサイトに対してデータを要求するときは、特定のURLを使用します。URLに応じて、HTTPサーバーによってリクエストが解釈され、適切なレスポンスが返されます。
 
-Examples will be written using the fictional Mastodon website, mastodon.example, which is hosted at `https://mastodon.example`. The root of this website is `/`, and specific subdirectories and paths are known as endpoints. Mastodon's API endpoints are nested under the `/api` namespace, and most methods currently have their endpoints under `/api/v1`. Requests will be listed by their HTTP method and their endpoint; for example, GET /api/v1/endpoint should be interpreted as a GET request made to that endpoint on your domain, or in other words, `https://mastodon.example/api/v1/endpoint`.
+例では `https://mastodon.example` でホストされている架空のMastodonサーバー mastodon.example を使用します。このWebサイトのルートは`/`であり、サブディレクトリとパスはエンドポイントと呼ばれます。Mastodonのエンドポイントは `/api` 名前空間の下にネストされ、現在はほとんどのメソッドが `/api/v1` の下にあります。リクエストはHTTPメソッドとエンドポイントごとにリストされます。たとえば、GET /api/v1/endpoint は、ドメインのそのエンドポイントに対して発行されたGETリクエスト、言い換えると`https://mastodon.example/api/v1/endpoint`として解釈されます。
 
-## Fetching public timelines {#timelines}
 
-Let's take a look at one of the most basic use cases for public data from Mastodon -- the public timelines.
+## 公開タイムラインの取得 {#timelines}
 
-We can try to request [GET /api/v1/timelines/public](../methods/timelines/#public-timeline) like so:
+Mastodonの公開データの最も基本的なもののひとつである、公開タイムラインを見てみましょう。
+
+次のように、[GET /api/v1/timelines/public](../methods/timelines/#public-timeline) へリクエストを試みることができます：
 
 ```bash
 curl https://mastodon.example/api/v1/timelines/public
 ```
 
-Wow, that's a lot of text in response! The public timeline returns 20 statuses by default. We can use the `limit` parameter to request less than that. Let's try requesting the same endpoint, but with a limit of 2 this time:
+おおっと！大量のテキストが返ってきました！ 公開タイムラインは、デフォルトで20件の投稿を返します。`limit`パラメーターを使用して、数を制限できます。ふたたび同じエンドポイントにリクエストを送ってみましょう。ただし今度は limit を 2に設定します：
 
 ```bash
 curl https://mastodon.example/api/v1/timelines/public?limit=2
 ```
 
-Our response should be more manageable this time. We can parse or beautify this JSON with our chosen utility, and we should see that the response looks something like this:
+今回のレスポンスはより見やすいはずです。ツールを使用して、このJSONを整形できます。レスポンスは以下のようになります：
+
 
 ```javascript
 [
@@ -52,58 +54,58 @@ Our response should be more manageable this time. We can parse or beautify this 
 ]
 ```
 
-We can do similarly for hashtags by calling [GET /api/v1/timelines/tag/:hashtag](../methods/timelines/#hashtag-timeline) -- here, the colon means that this part of the endpoint is a path parameter. In the case of :hashtag, this means we use the hashtag's name \(and once again, a limit of 2\):
+同様に、 [GET /api/v1/timelines/tag/:hashtag](../methods/timelines/#hashtag-timeline) で、ハッシュタグを検索できます。ここで、コロンはエンドポイントとパスパラメーターの区切りであることを示します。 :hashtag の場合、ハッシュタグの名前を使うことを意味します（ここでも2件に制限します）：
 
 ```bash
 curl https://mastodon.example/api/v1/timelines/tag/cats?limit=2
 ```
 
-We should once again see 2 statuses have been returned in a JSON array of [Status]({{< relref "../entities/status.md" >}}) entities. We can parse the JSON by array, then by object. If we were using Python, our code might look something like this:
+再度、2件のデータが [投稿]({{< relref "../entities/status.md" >}}) エンティティのJSON配列形式で返されました。JSONを配列で解析し、次にオブジェクトで解析します。Pythonを使っている場合、コードは以下のようになります：
 
 ```python
 import requests
 import json
 
 response = requests.get("https://mastodon.example/api/v1/timelines/tag/cats?limit=2")
-statuses = json.dumps(response.text) # this converts the json to a python list of dictionary
-assert statuses[0]["visibility"] == "public" # we are reading a public timeline
-print(statuses[0]["content"]) # this prints the status text
+statuses = json.dumps(response.text) # これはJSONをPythonの辞書型のリストに変換します
+assert statuses[0]["visibility"] == "public" # 公開タイムラインを読みたいです
+print(statuses[0]["content"]) # 投稿の本文を表示します
 ```
 
 {{< hint style="info" >}}
-Parsing JSON and using it in your program is outside of the scope of this tutorial, as it will be different depending on your choice of programming language and on the design of your program. Look for other tutorials on how to work with JSON in your programming language of choice.
+JSONを解析してプログラムで使用することは、プログラミング言語やプログラムデザインによって異なるので、このチュートリアルでは扱いません。それぞれのプログラミング言語でのJSONの取扱いについては、他のチュートリアルを参照してください。
 {{< /hint >}}
 
 {{< hint style="info" >}}
-[MastoVue](https://mastovue.glitch.me) is an example of an application that lets you browse public timelines.
+[MastoVue](https://mastovue.glitch.me) は、公開タイムラインを見ることができるアプリケーションの例です。
 {{< /hint >}}
 
-## Fetching public accounts and statuses {#toots}
+## 公開アカウントと投稿を取得する{#toots}
 
-Now that we are familiar with how to make requests and how to handle responses, you can experiment with more public data. The following methods may be of interest:
+リクエストの作成方法とレスポンスの処理方法を理解したので、さらに多くの公開データを試すことができます。次のメソッドが興味深いかもしれません：
 
-* Once you know an account's id, you can use [GET /api/v1/accounts/:id](../methods/accounts/#account) to view the [Account]({{< relref "../entities/account.md" >}}) entity.
-  * To view public statuses posted by that account, you can use [GET /api/v1/accounts/:id/statuses](../methods/accounts/#statuses) and parse the resulting array of [Status]({{< relref "../entities/status.md" >}}) entities.
-* Once you know a status's id, you can use [GET /api/v1/statuses/:id](../methods/statuses/#view-specific-status) to view the Status entity.
-  * You can also use [GET /api/v1/statuses/:id/reblogged\_by](../methods/statuses/#boosted-by) to view who boosted that status,
-  * or [GET /api/v1/statuses/:id/favourited\_by](../methods/statuses/#favourited-by) to view who favourited that status.
-  * Requesting [GET /api/v1/statuses/:id/context](../methods/statuses/#parent-and-child-statuses) will show you the ancestors and descendants of that status in the tree that is the conversational thread.
-  * If the status has a poll attached, you can use [GET /api/v1/polls/:id](../methods/statuses/polls.md#view-a-poll) to view the poll separately.
+* アカウントのIDを知っている場合は、[GET /api/v1/accounts/:id](../methods/accounts/#account) を使うと [Account]({{< relref "../entities/account.md" >}}) エンティティを取得できます。
+  * そのアカウントによる公開投稿を見る場合は、 [GET /api/v1/accounts/:id/statuses](../methods/accounts/#statuses) を使います。結果は [Status]({{< relref "../entities/status.md" >}}) エンティティの配列です。
+* 投稿のIDを知っている場合は、 [GET /api/v1/statuses/:id](../methods/statuses/#view-specific-status) を使うとStatus エンティティを見ることができます。
+  * さらに [GET /api/v1/statuses/:id/reblogged\_by](../methods/statuses/#boosted-by) を使うと、誰が投稿をブーストしたか見ることができます。
+  * あるいは [GET /api/v1/statuses/:id/favourited\_by](../methods/statuses/#favourited-by) を使うと、誰がお気に入りしたかを見ることができます。
+  * [GET /api/v1/statuses/:id/context](../methods/statuses/#parent-and-child-statuses) をリクエストすると、スレッドツリーの祖先と子孫が表示されます。
+  * 投稿にアンケートが付加されていたのなら、 [GET /api/v1/polls/:id](../methods/statuses/polls.md#view-a-poll) でアンケートを個別に見ることができます。
 
-IDs of accounts and statuses are local to the Mastodon website's database and will differ for each Mastodon website.
+アカウントと投稿のIDはMastodon Webサイトのデータベースに対してローカルであり、Mastodon Webサイトごとに異なります。
 
-## Fetching public instance data {#instance}
+## 公開インスタンスデータを取得する {#instance}
 
-One last thing you can do with anonymous requests is to view information about the Mastodon website.
+最後に、Mastodon Webサイトの情報を匿名でリクエストすることができます。
 
-* View general information with [GET /api/v1/instance](../methods/instance/#fetch-instance),
-  * view its peers with [GET /api/v1/instance/peers](../methods/instance/#list-of-connected-domains) or
-  * its weekly activity with [GET /api/v1/instance/activity](../methods/instance/#weekly-activity), or to
-  * list all custom emoji available with [GET /api/v1/custom\_emojis](../methods/instance/custom_emojis.md#custom-emoji).
-* See [GET /api/v1/directory](../methods/instance/directory.md#view-profile-directory) for a directory of all available profiles.
-* See [GET /api/v1/trends](../methods/instance/trends.md#trending-tags) for currently trending hashtags.
+* 一般的な情報は [GET /api/v1/instance](../methods/instance/#fetch-instance) で取得できます。
+  * ピアリストは [GET /api/v1/instance/peers](../methods/instance/#list-of-connected-domains) で取得できます。
+  * 週間アクティビティは [GET /api/v1/instance/activity](../methods/instance/#weekly-activity) で取得できます。
+  * 使用可能な全てのカスタム絵文字は [GET /api/v1/custom\_emojis](../methods/instance/custom_emojis.md#custom-emoji) で取得できます。
+* [GET /api/v1/directory](../methods/instance/directory.md#view-profile-directory) で、ディレクトリに掲載されている使用可能なすべてのプロフィールを取得できます。
+* [GET /api/v1/trends](../methods/instance/trends.md#trending-tags) を見れば、現在のハッシュタグのトレンドを知ることができます。
 
 {{< hint style="info" >}}
-For a practical example of what you can do with just instance data, see [emojos.in](https://emojos.in/), which lets you preview all custom emoji at a given instance.
+インスタンスのデータだけでできることの実際の例として、[emojos.in](https://emojos.in/)があります。これは指定したインスタンスの全てのカスタム絵文字をプレビューできるサービスです。
 {{< /hint >}}
 
