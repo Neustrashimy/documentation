@@ -1,5 +1,5 @@
 ---
-title: Code structure
+title: プログラムの構造
 description: Where to find certain parts of the codebase.
 menu:
   docs:
@@ -8,54 +8,54 @@ menu:
 ---
 
 {{< hint style="danger" >}}
-This page is under construction.
+このページは工事中です！
 {{< /hint >}}
 
-### Code structure {#structure}
+### プログラムの構造 {#structure}
 
-The following overview should not be seen as complete or authoritative, but as a rough guidance to help you find your way in the application.
+以下に示す概要は、完全または信頼できるものではなく、アプリケーションの概略を掴むために役立つおおまかなガイドとして見なしてください。
 
 #### Ruby {#ruby}
 
 | Path | Description |
 | :--- | :--- |
-| `app/controllers` | Code that binds business logic to templates |
-| `app/helpers` | Code that can be used from views, i.e. common operations |
-| `app/lib` | Code that doesn’t fit in the other categories |
-| `app/models` | Code that represents data entities |
-| `app/serializers` | Code that generates JSON from models |
-| `app/services` | Complex logical operations involving multiple models |
-| `app/views` | Templates for generating HTML or other output |
-| `app/workers` | Code that executes outside the request-response cycle |
-| `spec` | Automated test suite |
+| `app/controllers` | ビジネスロジックとテンプレートを結びつけるコード |
+| `app/helpers` | ビューで使われるコード。たとえば共通の操作など。 |
+| `app/lib` | ほかのカテゴリーに属さないコード |
+| `app/models` | データエンティティを表すコード |
+| `app/serializers` | モデルからJSONを生成するコード |
+| `app/services` | 複数のモデルが関係する複雑なロジックの集合体 |
+| `app/views` | HTMLやその他の出力のためのテンプレート |
+| `app/workers` | リクエスト・レスポンス以外で実行されるコード |
+| `spec` | 自動化されたテスト一覧 |
 
 #### JavaScript {#javascript}
 
 | Path | Description |
 | :--- | :--- |
-| `app/javascript/mastodon` | Code for the multi-column React.js application |
-| `app/javascript/packs` | Code for non-React.js pages |
+| `app/javascript/mastodon` | マルチカラム React.js アプリのコード |
+| `app/javascript/packs` | React.jsを使っていないページのコード |
 
-#### CSS and other assets {#assets}
-
-| Path | Description |
-| :--- | :--- |
-| `app/javascript/images` | Images |
-| `app/javascript/styles` | Code that turns into CSS via Sass |
-
-#### Localizations {#localizations}
+#### CSS とその他のアセット {#assets}
 
 | Path | Description |
 | :--- | :--- |
-| `config/locales` | Server-side localizations in the YML format |
-| `app/javascript/mastodon/locales` | Client-side localizations in the JSON format |
+| `app/javascript/images` | 画像 |
+| `app/javascript/styles` | SassからCSSに変換されたコード |
 
-### Localization maintenance {#localization-maintenance}
+#### ローカライゼーション {#localizations}
 
-All locale files are normalized to ensure consistent formatting and key order, which minimizes changesets in version control.
+| Path | Description |
+| :--- | :--- |
+| `config/locales` | サーバー側のYMLフォーマットローカライゼーションデータ |
+| `app/javascript/mastodon/locales` | クライアント側のJSONフォーマットローカライゼーションデータ |
+
+### ローカライゼーションメンテナンス {#localization-maintenance}
+
+すべてのロケールファイルは正規化されており、フォーマットとキーの順序に一貫性があるため、バージョン管理の変更セットが最小限で済みます。
 
 | Command | Description |
 | :--- | :--- |
-| `i18n-tasks normalize` | Normalize server-side translations |
-| `yarn run manage:translations` | Normalize client-side translations |
+| `i18n-tasks normalize` | 正規化されたサーバ側の翻訳 |
+| `yarn run manage:translations` | 正規化されたクライアント側の翻訳 |
 
