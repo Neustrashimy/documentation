@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: ルート
 description: How HTTP methods map to controllers and actions.
 menu:
   docs:
@@ -9,13 +9,13 @@ menu:
 
 {{< caption-link url="https://github.com/tootsuite/mastodon/blob/master/config/routes.rb" caption="config/routes.rb" >}}
 
-## Explanation of routes {#routes}
+## ルートの説明 {#routes}
 
-Mastodon uses Ruby on Rails, which defines its router configuration at config/routes.rb. You may view the [Ruby on Rails routing guide](https://guides.rubyonrails.org/routing.html) for more detailed information, but this page will explain the basics of how Mastodon handles routing.
+MastodonはRuby on Rails を使用しており、config/routes.rb においてルーター設定が定義されています。[Ruby on Rails ルーティングガイド](https://guides.rubyonrails.org/routing.html) に詳細な情報があります。このページではMastodonがどのようにルーティングをするかの基本を解説します。
 
-### How routes are constructed {#router}
+### どのようにルートが構築されているか {#router}
 
-`namespace` is a prefix for routes mapped to a certain controller directory. `resources` are mapped to controllers within that namespace directory. `scope` passes to the `module`'s controller. For example, consider the following abbreviated code:
+`namespace` は特定のコントローラーディレクトリに紐づけられたルートのプレフィックスです。`resources` は名前空間ディレクトリ内のコントローラーに紐づけられます。`scope` は `module` のコントローラーに渡されます。たとえば、次の簡略化されたコードについて見てみます：
 
 {{< code title="config/routes.rb excerpt" >}}
 ```ruby
@@ -35,51 +35,52 @@ end
 ```
 {{< /code >}}
 
-The first available resource is :statuses, which is nested under the :api and :v1 namespaces. Thus, the resulting HTTP route will be /api/v1/statuses. The `only` defines certain allowed methods, which are to be defined in the controller at `app/controllers/api/v1/statuses_controller.rb`.
+はじめに、使用できるリソースは、:api と :v1 名前空間の下にネストされた :statusesです。したがって、HTTPルートは /api/v1/statuses になります。`only` は、`app/controllers/api/v1/statuses_controller.rb`のコントローラーで定義された特定の許可されたメソッドを定義します。
 
-Within /api/v1/statuses, there is a scope for a module :statuses, where additional resources are defined. The controllers for these resources live in `app/controllers/api/v1/statuses/`. For example, :favourite will be handled by the \#create action within `app/controllers/api/v1/statuses/favourites_controller.rb` and :unfavourite will be handled within the same controller, but by the \#destroy action.
+/api/v1/statuses 内には、追加のリソースが定義されている :statuses のスコープがあります。これらのリソースのコントローラーは `app/controllers/api/v1/statuses/` にあります。たとえば、 :favourite は `app/controllers/api/v1/statuses/favourites_controller.rb` の \#create アクションで取り扱われます。:unfavourite も同じコントローラーで取り扱われますが、 \#destroy アクションによってです。
 
-There is also a custom method defined for any `member` within this scope, or in other words, for any status to be controlled by `app/controllers/api/v1/statuses_controller.rb`, which is mapped to GET /api/v1/statuses/:id/context and handled by the :context action defined within that controller.
+このスコープ内の `member` に対して定義されたカスタムメソッドもあります。つまり、statusが`app/controllers/api/v1/statuses_controller.rb`で制御され、/api/v1/statuses/:id/contextにマップされ、そのコントローラー内で定義された :context アクションによって処理されます。
 
-### Available methods {#methods}
+
+### 使用可能メソッド {#methods}
 
 #### :index
 
-Maps to HTTP GET, for a list. Handled by the \#index action in a controller.
+HTTP GETにマッピングされ、リストに使われます。コントローラーの \#index アクションでハンドルされます。
 
 #### :show
 
-Maps to HTTP GET, for a single view. Handled by the \#show action in a controller.
+HTTP GETにマッピングされ、単一ビューに使われます。コントローラーの \#show アクションでハンドルされます。
 
 #### :create
 
-Maps to HTTP POST. Handled by the \#create action in a controller.
+HTTP POSTにマッピングされます。コントローラーの \#create アクションでハンドルされます。
 
 #### :update
 
-Maps to HTTP PUT. Handled by the \#update action in a controller.
+HTTP PUTにマッピングされます。コントローラーの \#update アクションでハンドルされます。
 
 #### :destroy
 
-Maps to HTTP DELETE. Handled by the \#destroy action in a controller.
+HTTP DELETEにマッピングされます。コントローラーの \#destroy アクションでハンドルされます。
 
 ## .well-known {#well-known}
 
 ### /.well-known/host-meta {#host-meta}
 
-Extensible Resource Descriptor \(XRD\). Advertises existence of Webfinger.
+Extensible Resource Descriptor \(XRD\)。 Webfingerの存在を知らせます。
 
 ### /.well-known/nodeinfo {#nodeinfo}
 
-Maps to NodeInfo 2.0 endpoint at `/nodeinfo/2.0`, used for advertising software name and version, protocols, usage statistics, and whether registrations are open.
+ `/nodeinfo/2.0` にある Nodeinfo 2.0 エンドポイントにマッピングされており、ソフトウェアの名前とバージョン、プロトコル、統計、登録可能かどうかの通知に使用されます。
 
 ### /.well-know/webfinger {#webfinger}
 
-Used for discovering ActivityPub actor id. See [Spec compliance &gt; WebFinger]({{< relref "../spec/webfinger.md" >}}) for more information.
+ActivityPubのactor idを検出するために使われます。詳しくは [Spec compliance &gt; WebFinger]({{< relref "../spec/webfinger.md" >}}) を参照してください。
 
 ### /.well-known/change-password {#change-password}
 
-Maps to account settings page.
+アカウントの設定ページへマッピングされています。
 
 ### /.well-known/keybase-proof-config {#keybase}
 
