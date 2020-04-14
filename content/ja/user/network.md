@@ -1,5 +1,5 @@
 ---
-title: Using the network features
+title: ネットワーク機能を使う
 description: Follow and talk to anyone from any server.
 menu:
   docs:
@@ -7,37 +7,38 @@ menu:
     parent: user
 ---
 
-## Browsing content through public timelines {#timelines}
+## 公開タイムラインを通してコンテンツを見る {#timelines}
 
 {{< figure src="/assets/image%20%2830%29.png" caption="Posts within a public timeline" >}}
 
-To allow you to discover potentially interesting content, Mastodon provides a way to browse all public posts. Well, there is no global shared state between all servers, so there is no way to browse _all_ public posts. When you browse the **federated timeline**, you see all public posts that the server you are on knows about. There are various ways your server may discover posts, but the bulk of them will be from people that other users on your server follow.
+あなたが興味がありそうなコンテンツを見つけるために、Mastodonはすべての公開された投稿を見る方法を提供しています。しかしながら、全てのサーバー間でグローバルに共有されているわけではないので、公開されている _全て_ の投稿を見ることができるわけではありません。**連合タイムライン** を閲覧することで、あなたがいるサーバーが知っている限りの全ての公開されている投稿を見ることができます。サーバーが投稿を発券する方法はいろいろありますが、その大部分はあなたのサーバーの他のユーザーがフォローしている人からの投稿です。
 
-There is a way to filter the federated timeline to view only public posts created on your server: The **local timeline**. Mind that “local” here refers to the server, not to a geographical location.
+連合タイムラインから、あなたがいるサーバー上で作成された公開投稿のみをフィルタリングして見るには、**ローカルタイムライン** を閲覧します。ここで言う「ローカル」とはサーバーを意味し、地理的な場所を指すものではないことに注意してください。
 
-## Interacting with people's posts {#actions}
+## 他の人の投稿とのやりとり {#actions}
 
 {{< figure src="/assets/image%20%2821%29.png" caption="An expanded view can be loaded by clicking a status in the timeline." >}}
 
-You can perform quick actions on a post directly from the timeline, or you can click on the post to load an expanded view that shows extra information, such as a full timestamp, interaction counts, and threaded replies, if any. The following actions can be performed on a post:
+タイムラインから直接クイックアクションを実行することもできますし、投稿をクリックすることで正確なタイムスタンプ、やりとりの数、スレッド化された返信がある場合はその返信の数などの追加情報を表示する拡張ビューを表示することもできます。投稿に対して、以下のアクションを実行することができます：
 
-* **Reply** to a post by clicking the arrow icon. Your toot will show up in the thread below the post you are replying to.
-* **Boost** a post by clicking the cycled-arrow icon. The post will be reshared on your profile.
-* **Favourite** a post by clicking the star icon. The post will be added to your favourites list, and a favourite notification will be delivered to its author.
-* **Bookmark** a post by clicking the ribbon icon. The post will be privately added to your bookmarks list without generating a notification.
-* Access a **menu** of additional options by clicking the ellipsis icon.
 
-## Notifications {#notifications}
+* 矢印アイコンをクリックすることで **返信** することができます。あなたの投稿は、返信した投稿の下にスレッド表示されます。
+* 回転している矢印アイコンをクリックすることで **ブースト** することができます。投稿があなたのプロフィール上で再共有されます。
+* 星のアイコンをクリックすることで **お気に入り** することができます。投稿はお気に入りリストに追加され、投稿者にお気に入りされたことを通知します。
+* リボンアイコンをクリックすることで **ブックマーク** することができます。通知されず、プライベートにブックマークリストに追加されます。
+* 省略記号（・・・）アイコンをクリックすることで、追加オプションのある **メニュー** を開くことができます。
+
+## 通知 {#notifications}
 
 {{< figure src="/assets/image%20%2850%29.png" caption="Notifications column" >}}
 
-When other people interact with you or your posts, you will receive a notification depending on the type of the event. Your notifications column allows you to view all notifications in the same stream, or to filter for specific types of notifications:
+他の人があなたの投稿に対してやりとりを行うと、その種類によって通知を受信します。通知カラムではすべての通知を一度に見ることができるほか、以下の種類によってフィルタリングすることができます：
 
-* **Mentions:** received when someone has mentioned you in a post.
-* **Favourites:** received when someone has favourited one of your posts.
-* **Boosts:** received when someone has boosted one of your posts.
-* **Polls:** Received when a poll that you have voted in or created has ended.
-* **Follows:** Received when someone has followed your profile.
+* **返信：** あなたの投稿に誰かが返信したときに受け取ります。
+* **お気に入り:** あなたの投稿を誰かがお気に入りしたときに受け取ります。
+* **ブースト:** あなたの投稿を誰かがブーストしたときに受け取ります。
+* **アンケート:** あなたが作ったり投票したアンケートの結果が出たときに受け取ります。
+* **フォロー:** 誰かがあなたをフォローしたときに受け取ります。
 
 ## Following profiles {#follow}
 
