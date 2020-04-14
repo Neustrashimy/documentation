@@ -84,7 +84,7 @@ ActivityPubのactor idを検出するために使われます。詳しくは [Sp
 
 ### /.well-known/keybase-proof-config {#keybase}
 
-Used for integration with Keybase, defining which usernames are acceptable and where proofs may be checked.
+Keybaseとの統合に使用され、どのユーザ名が受け入れられ、どこで証明がチェックされるかを定義します。
 
 {{< hint style="warning" >}}
 The sections below this point are under construction.
@@ -92,22 +92,22 @@ The sections below this point are under construction.
 
 ## Public URIs {#public}
 
-* `/users/username` = user URI
-* `/users/username/remote_follow` = remote follow dialog
-* `/users/username/statuses/id` = status URI
-* `/@username` = "toots" tab
-* `/@username/with_replies` = "toots and replies" tab
-* `/@username/media` = "media" tab
+* `/users/username` = ユーザー URI
+* `/users/username/remote_follow` = リモートフォローダイアログ
+* `/users/username/statuses/id` = 投稿 URI
+* `/@username` = "トゥート" tab
+* `/@username/with_replies` = "トゥートと返信" tab
+* `/@username/media` = "メディア" tab
 * `/@username/tagged/:hashtag` = tagged statuses by user
 * `/@username/:status_id` = status permalink
 * `/@username/:status_id/embed` = embeddable version
 * `/interact/:status_id` = remote interaction dialog
 * `/explore` = profile directory
 * `/explore/:hashtag` = profiles with this hashtag in bio
-* `/public` = public timeline preview
-* `/about` = landing page
-* `/about/more` = extended description
-* `/terms` = terms of service
+* `/public` = 公開タイムラインのプレビュー
+* `/about` = ランディングページ
+* `/about/more` = 詳細情報
+* `/terms` = 利用規約
 
 ## API {#api}
 
