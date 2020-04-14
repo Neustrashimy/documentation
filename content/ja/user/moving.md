@@ -1,5 +1,5 @@
 ---
-title: Moving or leaving accounts
+title: 引っ越し、アカウントの削除
 description: Take your information and do what you want with it.
 menu:
   docs:
@@ -9,37 +9,41 @@ menu:
 
 ## Exporting your information {#export}
 
-{{< figure src="/assets/image%20%2835%29.png" caption="The data export page in settings" >}}
+{{< figure src="/assets/image%20%2835%29.png" caption="設定内のデータエクスポートページ" >}}
 
-At any time you want, you can go to Settings &gt; Export and download a CSV file for your current followed accounts, your currently created lists, your currently blocked accounts, your currently muted accounts, and your currently blocked domains. Your following, blocking, muting, and domain-blocking lists can be imported at Settings &gt; Import, where they can either be merged or overwritten.
+設定 &gt; エクスポートページを訪れることで、フォロー、リスト、ブロックリスト、ミュートリスト、ドメインブロック情報をいつでもCSV形式でダウンロードすることができます。フォロー、ブロック、ミュート、ドメインブロックのリストは、設定 &gt; インポートページで統合もしくは上書きすることができます。
 
-Requesting an archive of your toots and media can be done once every 7 days, and can be downloaded in ActivityPub JSON format. Mastodon currently does not support importing toots or media due to technical limitations, but your archive can be viewed by any software that understands how to parse ActivityPub documents.
+あなたの投稿およびメディアファイルは7日に1度だけリクエストすることができ、ActivityPub JSON形式でダウンロードできるようになります。Mastodonは、現在のところ、技術的制約により投稿およびメディアファイルのインポートに対応していませんが、ActivityPubの読み取りに対応したソフトウェアを使えば、アーカイブを読むことができます。
 
-## Redirecting or moving your profile {#migration}
 
-From the bottom of Settings &gt; Account, you can find options related to account redirection or migration.
+## プロフィールのリダイレクト、もしくは引っ越し {#migration}
 
-### Profile redirect {#redirect}
+設定 &gt; アカウントページの下部に、アカウントのリダイレクト、もしくは引っ越しに関する項目があります。
+
+### プロフィールのリダイレクト {#redirect}
 
 {{< figure src="/assets/image%20%2853%29.png" caption="Profile redirect form" >}}
 
-Redirecting your account disables posting from that account and displays a "profile moved" notice indicating your new account. Anyone viewing your profile can see this notice and will know to follow you at your new account. Following redirected accounts is not possible. The redirect can be canceled at any time.
+そのアカウントから投稿をしなくなり、新しいアカウントへ「引っ越しました」というお知らせを表示します。
+あなたのプロフィールを見た誰もがそのお知らせを見ることができ、あなたをフォローしていることを知ることができます。リダイレクトされたアカウントをフォローすることはできません。リダイレクトはいつでもキャンセルできます。
 
-### Profile move {#move}
+### プロフィールの引っ越し {#move}
 
 {{< figure src="/assets/image%20%2847%29.png" caption="Profile move form" >}}
 
-Moving your account is the same as redirecting your account, but it will also irreversibly force everyone to unfollow your current account and follow your new account, if their software supports the Move activity. Your toots will not be moved, due to technical limitations. There is also a very heavy cooldown period in which you cannot migrate again, so be very careful before using this option!
+アカウントの引っ越しはアカウントのリダイレクトと同じですが、ソフトウェアが「引っ越し」をサポートしている場合は、あなたをフォローしているアカウントから強制的にアンフォローし、新しいアカウントをフォローするようにします。あなたの投稿は、技術的制約のために移行されません。また、とても長いクールダウン期間があり、その間は再び引っ越しすることはできませんので、このオプションを使う時は十二分に注意してください。
 
-### Account aliases {#aliases}
+
+### アカウントエイリアス {#aliases}
 
 {{< figure src="/assets/image%20%2840%29.png" caption="Alias management screen" >}}
 
-Profile moves can only be initiated when your two accounts have been aliased. Account aliases are currently not used for anything other than profile moves, where you will need to set your old account as an alias of your new account before initiating the move. Setting aliases is harmless and reversible on its own.
+プロフィールの移動は、2つのアカウントがエイリアスされている場合にのみ開始することができます。アカウントのエイリアスは、現在のところプロフィールの引っ越し以外には使用されていませんが、引っ越しを開始する前に古いアカウントを新しいアカウントのエイリアスとして設定する必要があります。エイリアスの設定は無害であり、元に戻すことができます。
 
-## Deleting your account {#delete}
+
+## アカウントの削除 {#delete}
 
 {{< figure src="/assets/image%20%2816%29.png" caption="Account deletion form" >}}
 
-From the bottom of Settings &gt; Account, you can find the form to delete your account. Deleting your account is irreversible, and will cause both your profile and username to become forever unusable.
+設定 &gt; アカウントページの下部から、アカウントの削除ができます。アカウントの削除は不可逆的で、プロフィールとユーザー名は二度と使用できなくなります。
 
