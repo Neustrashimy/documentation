@@ -1,5 +1,5 @@
 ---
-title: Setting up a dev environment
+title: 開発環境のセットアップ
 description: Instructions on how to start developing for Mastodon.
 menu:
   docs:
@@ -11,29 +11,31 @@ menu:
 This page is under construction.
 {{< /hint >}}
 
-### Setup {#setup}
+### セットアップ {#setup}
 
-Run following commands in the project directory `bundle install`, `yarn install`.
+`bundle install` と `yarn install` を、プロジェクトディレクトリで実行してください。
 
-In the development environment, Mastodon will use PostgreSQL as the currently signed-in Linux user using the `ident` method, which usually works out of the box. The one command you need to run is `rails db:setup` which will create the databases `mastodon_development` and `mastodon_test`, load the schema into them, and then create seed data defined in `db/seed.rb` in `mastodon_development`. The only seed data is an admin account with the credentials `admin@localhost:3000` / `mastodonadmin`.
+開発環境では、Mastodonは現在サインインしているユーザーとして使う、通常はそのまま使える`ident`認証を使用します。`mastodon_development` と `mastodon_test` データベースを作成してスキーマを生成するために、`rails db:setup`コマンドを実行する必要があります。それから、 `db/seed.rb`で定義されたシードデータを `mastodon_development` に作成します。シードデータは、認証情報`admin@localhost:3000` / `mastodonadmin`を持った管理者アカウントのみです。
 
-> Please keep in mind, by default Mastodon will run on port 3000. If you configure a different port for it, the generated admin account will use that number.
+> Mastodonはデフォルトで3000番ポートで実行されることに注意してください。もしポート番号を変更していたら、生成される管理者アカウントはその番号を使用します。
 
-### Running {#running}
 
-There are multiple processes that need to be run for the full set of Mastodon’s functionality, although they can be selectively omitted. To run all of them with just one command, you can install Foreman with `gem install foreman --no-document` and then use:
+### 実行 {#running}
+
+Mastodonをフルセットで動作させるためには、複数のプロセスを動作させる必要がありますが、選択的に止めることができます。すべての機能をひとつのコマンドで実行するためには、`gem install foreman --no-document` で Foremanをインストールし、Mastodonディレクトリ内で次のように使用します：
 
 ```text
 foreman start
 ```
 
-In the Mastodon directory. This will start processes defined in `Procfile.dev`, which will give you: A Rails server, a Webpack server, a streaming API server, and Sidekiq. Of course, you can run any of those things stand-alone depending on your needs.
+これで`Procfile.dev`に定義されたプロセスを実行します。次のものが含まれます： Railsサーバー、Webpackサーバー、ストリーミングAPIサーバー、そしてSidekiqです。もちろん、必要に応じて、それらの機能をスタンドアロンで実行することができます。
 
-### Testing {#testing}
+
+### テスト {#testing}
 
 | Command | Description |
 | :--- | :--- |
-| `rspec` | Run the Ruby test suite |
-| `yarn run test` | Run the JavaScript test suite |
-| `rubocop` | Check the Ruby code for conformance with our code style |
+| `rspec` | Rubyテストスイートを実行する |
+| `yarn run test` | JavaScriptテストスイートを実行する |
+| `rubocop` | Rubyコードがコーディング規約に準拠しているかチェックする |
 
