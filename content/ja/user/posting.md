@@ -1,5 +1,5 @@
 ---
-title: Posting toots
+title: トゥートを投稿する
 description: Sharing your thoughts has never been more convenient.
 menu:
   docs:
@@ -9,126 +9,128 @@ menu:
 
 {{< figure src="/assets/image%20%2859%29.png" caption="Compose form with CW enabled" >}}
 
-## Text {#text}
+## テキスト {#text}
 
-The main body of each status update can be composed using the text field. The default character limit is 500 characters.
+それぞれの投稿の本文はテキストフィールドで構成されています。デフォルトの文字数制限は500文字です。
 
-### Links {#links}
+### リンク {#links}
 
 {{< figure src="/assets/image%20%287%29.png" caption="Links must start with http\(s\):// and are counted as 23 characters regardless of length." >}}
 
-If you include links in your post, they must begin with `http://` or `https://`. All links are counted as 23 characters, no matter how long they actually are, so there is no need to use a link shortener to save characters. In fact, using a link shortener is actively discouraged.
+投稿にリンクを含める場合、`http://` もしくは `https://` で始まっていなければなりません。全てのリンクはどの程度の長さがあるかに関わらず23文字としてカウントされます。そのため、URL短縮サービスを使う必要はありません。実際、URL短縮サービスの使用は積極的に推奨されていません。
 
-### Mentions {#mentions}
+### 返信 {#mentions}
 
 {{< figure src="/assets/image%20%2820%29.png" caption="Suggested mentions for both local and remote users." >}}
 
-You can mention users by typing out their full address, e.g. `@alice@example.com`. Note that any usage of`@word` will be interpreted as mentioning the local user with the username `word`, if that user exists. Only the username part will count against your character limit -- the domain is not counted.
+`@alice@example.com` のような、相手のフルアドレスを入力することで、返信することができます。`word` というユーザー名を持つローカルユーザーが存在したとき、`@word` のように使うと、そのローカルユーザーを指しているものと解釈されることに注意してください。
 
-### Hashtags {#hashtags}
+### ハッシュタグ {#hashtags}
 
 {{< figure src="/assets/image%20%2825%29.png" caption="Hashtags are autosuggested by usage frequency." >}}
 
-You can use a `#hashtag` to make your post discoverable to anyone searching for that hashtag. Hashtags can contain alphanumeric characters and underscores, but cannot contain numbers only.
+`#hashtag`をを使用して、そのハッシュタグを使用しているユーザーが投稿を見つけられるようにできます。ハッシュタグにはアルファベットとアンダーバーを含めることができ、数字のみは許容されません。
 
-### Custom emoji {#emoji}
+### カスタム絵文字 {#emoji}
 
 {{< figure src="/assets/image%20%2838%29.png" caption="An array of custom emoji are available in the selector." >}}
 
-Each server offers a set of custom emoji you can use, like on Discord. You can use an emoji using its shortcode like `:thounking:`, or by clicking the emoji face in the compose box and browsing through the "Custom" category. You can also browse through and search for standard unicode emoji.
+それぞれのサーバーはDiscordのようなカスタム絵文字を提供します。`:thounking:` のようなショートコードを使うか、絵文字アイコンをクリックして絵文字ピッカーを開き、「カスタム」カテゴリから選ぶことで絵文字を使うことができます。標準的なUnicode絵文字も使えます。
 
-## Attachments {#attachments}
+## 添付 {#attachments}
 
-You can attach either files or a poll to your status.
+以下のようなファイルやアンケートを投稿に添付することができます。
 
-### Files {#media}
+### ファイル {#media}
 
 {{< figure src="/assets/image%20%2844%29.png" caption="Thumbnail for attached media, with options to delete, edit, or mark as sensitive" >}}
 
+ペーパークリップアイコンをクリックすることで、投稿にファイルを添付することができます。添付できるファイルの種類は以下の通りです：
 Click the paper clip to attach a file to your post. You can attach the following:
 
-* **Images** \(PNG, JPG, GIF\) **up to 8MB**. Images will be downscaled to 1.6 megapixels \(enough for a 1280x1280 image\). Up to 4 images can be attached.
-  * **Animated GIFs** are converted to soundless MP4s like on Imgur/Gfycat \(**GIFV**\). You can also upload soundless MP4 and WebM, which will be handled the same way.
-* **Videos** \(MP4, M4V, MOV, WebM\) **up to 40MB**. Video will be transcoded to H.264 MP4 with a maximum bitrate of 1300kbps and framerate of 60fps.
-* **Audio** \(MP3, OGG, WAV, FLAC, OPUS, AAC, M4A, 3GP\) **up to 40MB**. Audio will be transcoded to MP3 using V2 VBR \(roughly 192kbps\).
+* **8MBまでの画像** \(PNG, JPG, GIF\)。画像は1.6メガピクセルまで縮小されます（1280x1280ピクセル以内）。4枚まで添付できます。
+  * **アニメーションGIF** はImgur/Gfycat \(**GIFV**\)形式のファイルに変換されます。無音のMP4やWebMもアップロードできますが、同様に変換されます。
+* **40MBまでの動画** \(MP4, M4V, MOV, WebM\)。動画は、最大ビットレート1300kBps、最大60fps の H.264 MP4形式に変換されます。
+* **40MBまでの音声ファイル** \(MP3, OGG, WAV, FLAC, OPUS, AAC, M4A, 3GP\)。音声はV2 VBRを使用したMP3ファイルに変換されます（おおむね192kBpsです）。
 
-#### Editing media {#edit}
+#### メディアの編集 {#edit}
 
 {{< figure src="/assets/image%20%2826%29.png" caption="Edit media to add a media description or choose a focal point for the preview thumbnail." >}}
 
-By clicking the "Edit" link on the attachment thumbnail, you can load a modal which will allow adding a media description or changing the focal point. Although optional, it is a good idea to add media descriptions that briefly describe what is in contained in the media. These descriptions will be shown when the media fails to load for any reason, or when accessed by screen readers and other assistive technology. Setting the focal point is also optional, but can make preview thumbnails looks better when they are not shown in a 16:9 aspect ratio.
+添付ファイルのサムネイルの「編集」リンクをクリックすることで、メディアの説明の追加や焦点を編集することができるモーダルウィンドウを開くことができます。任意ですが、メディアの内容を簡単に説明する説明文を追加することをおすすめします。それは何らかの理由で読み込みに失敗したときに表示されたり、スクリーンリーダーや他のアクセシビリティ技術によって使用されます。焦点の設定もオプションですが、サムネイルが16:9のアスペクト比で表示されていない場合、サムネイルの見栄えをいい感じにすることができます。
 
-### Polls {#polls}
+
+### アンケート {#polls}
 
 {{< figure src="/assets/image%20%2841%29.png" caption="A poll with 2 one-of choices, expiring in 1 day" >}}
 
-Click the bar graph icon to attach a poll to your post.
+棒グラフのアイコンをクリックすると、アンケートを添付することができます。
 
-* You can add up to 4 choices. Each choice can be up to 25 characters.
-* Polls default to one-of / single-choice. Click on the radio button to switch your poll to any-of / multiple-choice checkboxes.
-* Polls can be set to expire in 5 minutes, 30 minutes, 1 hour, 6 hours, 1 day, 3 days, or 7 days.
+* 4つまでの選択肢を追加できます。それぞれの選択肢は25文字までです。
+* アンケートはデフォルトでは択一式です。ラジオボタンをクリックすることで、複数選択可のチェックボックスに切り替えることができます。
+* アンケートの期限は、5分、30分、1時間、6時間、1日、3日、7日のいずれかにセットできます。
 
-## Publishing levels {#privacy}
+## 公開範囲 {#privacy}
 
-| Level | Public timelines | Permalink | Profile view | Home feeds |
+| 公開範囲 | 公開タイムライン | 固定リンク | プロフィール画面 | ホームタイムライン |
 | :--- | :--- | :--- | :--- | :--- |
-| Public | Yes | Yes | Yes | Yes |
-| Unlisted | No | Yes | Yes | Yes |
-| Followers-only | No | Logged in on the same site | In-app or logged in | Yes |
-| Direct | No | Logged in and mentioned | In-app or logged in | No |
+| 公開 | Yes | Yes | Yes | Yes |
+| 非収載 | No | Yes | Yes | Yes |
+| フォロワー限定 | No | 同一サイトにログイン時のみ | アプリ内もしくはログイン時のみ | Yes |
+| ダイレクト | No | ログイン時かつ返信のみ | アプリ内もしくはログイン時のみ | No |
 
-Posts can be published with four different privacy levels:
+投稿は4つの異なるプライバシーレベルで公開されます：
 
-### Public {#public}
+### 公開 {#public}
 
-The default option.
+デフォルトです。
 
-* Anyone can see your post at the permalink without logging in.
-* Your post will appear in-app in the public timelines.
-* Your followers will receive the post in their home feeds, and anyone mentioned will receive the post in notifications.
-* Your post can be boosted into other home feeds.
+* 非ログイン状態でも固定リンクで誰もがあなたの投稿を見ることができます。
+* あなたの投稿はアプリ内の公開タイムラインに表示されます。
+* あなたのフォロワーはホームタイムラインに表示され、誰かがそれに返信したら通知されます。
+* あなたの投稿は他のホームフィードにブーストできます。
 
-### Unlisted {#unlisted}
+### 非収載 {#unlisted}
 
-Exactly the same as public, but with the following difference:
+公開と似ていますが、以下のような違いがあります：
 
-* Your post will not appear in Mastodon's public timelines.
+* あなたの投稿はMastodonの公開タイムラインに表示されません。
 
-### Followers-only {#private}
+### フォロワー限定 {#private}
 
-A more limited delivery option.
+さらに限定された配送オプションです。
 
-* Seeing your post at the permalink requires being logged in on the same website as someone who follows you or was mentioned.
-* Your post will not appear in-app except to followers browsing your profile, and to anyone mentioned.
-* Your followers will receive the post in their home feeds, and anyone mentioned will receive the post in notifications.
-* Your post cannot be boosted, except by yourself.
+* あなたの投稿をパーマリンクから見るには、あなたのフォロワーや返信された人である必要があります。
+* あなたの投稿はあなたのフォロワーや返信された人以外からは見ることができません。
+* あなたのフォロワーは投稿をホームフィードに受信できます。また、誰かが返信をしたら通知されます。
+* その投稿はあなた自身以外ブーストできません。
 
 {{< hint style="warning" >}}
-To effectively publish private \(followers-only\) posts, you must **lock your account**–otherwise, anyone could follow you to view older posts.
+効果的にプライベート（フォロワー限定）投稿をするには、**アカウントを承認制にする必要があります**。でなければ、誰でもあなたをフォローでき、古い投稿を見ることができます。
 {{< /hint >}}
 
 {{< hint style="danger" >}}
-Please mind that post privacy on Mastodon is per-post, rather than account-wide, and as such **there is no way to make past public posts private.**
+Mastodonの投稿のプライバシーはアカウント単位ではなく、投稿ごとに設定されているので、 **過去の投稿を非公開にすることはできない** ことに注意してください。
 {{< /hint >}}
 
-### Direct {#direct}
+### ダイレクトメッセージ {#direct}
 
-Send your post only to mentioned users.
+メンションしたユーザーに対してのみ投稿します。
 
-* Seeing your post at the permalink requires being logged in on the same website as someone who was mentioned.
-* Your post will not appear in-app except to anyone mentioned.
-* Anyone mentioned will receive the post in notifications. It will not appear in the home timeline.
-* Your post cannot be boosted.
+* あなたの投稿をパーマリンクから見るには、返信された人である必要があります。
+* メンションした人以外からは見えません。
+* メンションされたら通知されますが、ホームタイムラインには表示されません。
+* その投稿はブーストできません。
+
 
 {{< hint style="warning" >}}
-**Do not share dangerous and sensitive information over direct messages**. Mastodon is not an encrypted messaging app like Signal or Wire, the database administrators of the sender’s and recipient’s servers have access to the text. Use them with the same caution as you would use forum PMs, Discord PMs and Twitter DMs.
+**危険な、もしくはセンシティブな情報をダイレクトメッセージでシェアしないでください**。MastodonはSignalやWireのように暗号化されたメッセージングアプリではありません。そのためデータベースにアクセスできる管理者や、送信元・受信先のサーバーはテキストにアクセスできます。フォーラムのPMやDiscordのPM、TwitterのDMと同じように扱ってください。
 {{< /hint >}}
 
-## Content warnings and sensitive content {#cw}
+## 閲覧注意とセンシティブなコンテンツ {#cw}
 
 {{< figure src="/assets/image.png" caption="A status with a CW that is marked as sensitive content." >}}
 
-One feature that Mastodon provides that you may not have seen on other social networks is the option to attach a content warning to your posts. When a content warning is included, the status content will be collapsed by default, and only the CW will be shown, similarly to an email subject line or a "read more" break. This can be used to add a summary or subject for your post, to collapse long posts, or to otherwise provide context or setup for the body of the post.
+ほかのソーシャルネットワークサービスにない、Mastodonの機能としては、投稿に閲覧注意を付与できることです。閲覧注意が付与された場合、投稿の本文はデフォルトで折り畳まれ、注意文のみ表示されます。電子メールの表題や、「もっと読む」の段落に似ています。これは、投稿の要約や件名を追加したり、長い投稿を折り畳むために使用したり、投稿の本文の文脈や設定を提供したりすることに使われます。
 
-When media is attached, a checkbox appears to allow you to "mark media as sensitive". This hides the full media behind a blurred thumbnail by default. Adding a CW to a post automatically marks the post as sensitive as well.
-
+メディアが添付された場合、「メディアを閲覧注意にする」チェックボックスが現れます。これは、デフォルトでメディアファイルのサムネイルをぼかします。閲覧注意を追加すると、「メディアを閲覧注意する」も同時に付与されます。
