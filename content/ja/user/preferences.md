@@ -1,5 +1,5 @@
 ---
-title: Set your preferences
+title: 環境設定をする
 description: Customize things just the way you like them.
 menu:
   docs:
@@ -7,83 +7,87 @@ menu:
     parent: user
 ---
 
-## Customizing the user interface {#interface}
+## ユーザーインタフェイスのカスタマイズ {#interface}
 
-### Choose a theme {#theme}
+### テーマを選ぶ {#theme}
 
-Mastodon defaults to a dark theme, but a light or high-contrast theme can be selected.
+Mastodonはデフォルトでダークテーマが適用されていますが、ライトテーマやハイコントラストテーマを選ぶことができます。
 
 {{< figure src="/assets/image%20%2834%29.png" caption="Mastodon light theme" >}}
 
-### Choose your layout {#layout}
+### レイアウトを選ぶ {#layout}
 
-Mastodon defaults to a simple, one-column layout with a compose box on the left and a column switcher on the right. You can choose to enable the advanced web interface, which allows you view and pin multiple columns at the same time.
+Mastodonはデフォルトでシンプルな1カラムレイアウトが適用されています。複数のカラムを同時に見たり、ピン止めできたりする高度なWebインタフェイスも選ぶことができます。
 
 {{< figure src="/assets/image%20%2832%29.png" caption="The advanced web interface" >}}
 
-In either interface, updates will load automatically as new posts are available. You can enable Slow Mode to instead show a banner at the top of the column indicating the number of new items available, which will be loaded only when you click the banner.
+どちらのインタフェイスでも、新しい投稿が利用可能であれば自動的に読み込みます。代わりに低速モードを使用すると、新しいアイテムが利用可能になったとき、カラム上部に数量のバナーを表示します。それらのアイテムはバナーをクリックしたときのみ読み込まれます。
 
-For accessibility reasons, the auto-play of animated GIFs is disabled by default. You can enable animated GIFs if you want to see animations. You can also reduce motion of animations throughout the UI.
+アクセシビリティの観点から、アニメーションGIFの自動再生はデフォルトで無効になっています。アニメーションを見たい場合は、アニメーションGIFを有効にすることができます。また、ユーザーインタフェイスのアニメーションも抑制することができます。
 
-Trending hashtags can be shown or hidden below the getting started column in the advanced UI, or below the column switcher in the simple UI \(only when there is enough space to display them\).
+トレンドタグは、高度なUIを使用しているときは「スタート」カラムの下部に、シンプルUIを使っている場合はカラムスイッチャーの下部に表示されます（表示するスペースがある場合）。
 
-### Confirmation dialogs {#confirm}
 
-You can choose to require confirmation before performing certain actions. Currently, confirmations can be set before performing the following actions:
+### 確認ダイアログ {#confirm}
 
-* Unfollow
-* Boost
-* Delete
+いくつかのアクションを行う前に、確認を求めるかどうかを選ぶことができます。現在、以下のアクションを行う前に確認ダイアログを表示させることができます：
 
-### Sensitive content {#sensitive}
+* フォロー解除
+* ブースト
+* 削除
 
-By default, any media marked as sensitive is hidden behind a click-through overlay. You can also choose to always show/hide media behind this overlay, regardless of whether it is marked as sensitive.
+### センシティブコンテンツ {#sensitive}
 
-Hidden and unloaded media uses a colorful gradient provided by the BlurHash algorithm, which uses the colors of the image but blurs the details. These gradients can be disabled.
+デフォルトでは、センシティブだとマークされたメディアはクリックすると外れるオーバレイで隠されます。センシティブとマークされているかに関わらず、常に隠す、もしくは常に隠さず表示するかを選ぶことができます。
+
+隠され、読み込まれていないメディアは、BlurHashアルゴリズムにより、元の画像の色味を活かしたカラフルなぼかし表示されます。ぼかしは無効化できます。
 
 {{< figure src="/assets/image%20%286%29.png" caption="An example blurhash thumbnail" >}}
 
-Posts with content warnings are collapsed by default, but you can choose to always expand the warnings so that the full post is displayed.
+コンテンツワーニングが付いた投稿はデフォルトで折り畳まれますが、常に展開して投稿全体を見るように設定することができます。
 
-## Controlling your notifications {#notifications}
+（訳注：センシティブコンテンツとは、日本語においては「閲覧注意」と訳されています。また、NSFW：職場閲覧注意 とも呼ばれます。）
 
-### Sending emails {#email}
 
-You can choose to receive email notifications according to the type of notification you receive within Mastodon. The following notification types are available to enable:
+## 通知の制御 {#notifications}
 
-* Follows
-* Follow requests
-* Boosts
-* Favourites
-* Mentions
+### メールの送信 {#email}
 
-You can also enable digest emails, which will provide you with an overview of notifications received during periods of long inactivity.
+Mastodon内で受け取れる通知の種類に応じて、メール通知を行うか選ぶことができます。次のような通知で使用できます：
 
-### Hiding certain notifications {#hide-notifications}
+* フォローされた
+* フォローリクエストを受けた
+* ブーストされた
+* お気に入りされた
+* 返信された
 
-You can choose to not receive notifications from people you don't follow, or from people who don't follow you. This will cause replies, favourites, boosts, and other interactions to not be shown to you.
+長期間アクティブでなかった間に受け取った通知のダイジェストをメールで受け取るようにすることもできます。
 
-You can also choose to not receive notifications when you receive a direct message from people you don't follow.
 
-## Miscellaneous options {#misc}
+### 特定の通知を隠す {#hide-notifications}
 
-If you opt out of search engine indexing, a `noindex` flag will be added to your public profile and status pages.
+フォローしていない、もしくはフォローされていない人々からの通知を受け取らないようにすることもできます。返信、お気に入り、ブーストなどのやりとりについての通知が見えなくなります。
 
-You can choose to hide your network, which will make your following and follower lists private to you only.
+あなたがフォローしていない人々からのダイレクトメッセージの通知を受け取らないようにすることもできます。
+
+## その他のオプション {#misc}
+
+サーチエンジンからオプトアウトするために、公開プロフィールページと投稿ページに `noindex` フラグを付与することができます。
+
+フォロー、フォロワーのリストを公開しないことで、あなたのつながりを隠すことができます。
 
 {{< figure src="/assets/image%20%284%29.png" caption="A profile that has opted to hide its network" >}}
 
-If you want to see posts that are boosted multiple times be reinserted into your feed at the top, you can disable boost grouping in timelines.
+複数回ブーストされた投稿をフィードのトップに持ってきたい場合は、タイムラインでのブーストのグループ化を無効にすることができます。
 
-### Posting defaults {#posting}
+### デフォルトの投稿の公開範囲 {#posting}
 
-Posts default to public privacy. You can choose to default new posts as unlisted or followers-only instead. For an explanation of post privacy levels, see [Posting to your Mastodon profile &gt; Publishing levels](posting.md#publishing-levels).
+投稿はデフォルトで公開になっています。デフォルトは、非収載、フォロワー限定に切り替えることができます。公開範囲について詳しくは [トゥートを投稿する &gt; 公開範囲](posting.md#privacy) を参照してください。
 
-By default, the language of your posts is automatically detected, but this detection is imprecise and may not be accurate. If you primarily or exclusively post in a certain language, it is a good idea to set that language here.
+デフォルトでは、あなたの投稿の言語は自動検出されます。しかしこの検出では正確でない可能性があります。主に、または専ら特定の言語で投稿する場合は、ここでその言語を設定することをおすすめします。
 
-If you often post sensitive media, you can choose to always mark your media as sensitive.
+もしセンシティブなメディアを頻繁に投稿するのなら、常にメディアを閲覧注意にすることもできます。
 
-### Filtering languages on public timelines {#languages}
+### 公開タイムラインの言語フィルタリング {#languages}
 
-You can choose to only show posts in certain detected languages while browsing the public timelines. However, note that language detection can be very imprecise, so you may still see some posts in a disabled language, or miss some posts from enabled languages.
-
+公開タイムラインで、特定の言語でのみ書かれた投稿を表示するよう選択できます。ただし、言語検出はとても不正確であるため、無効にした言語での投稿が見えたり、有効にした言語の投稿を見逃したりする可能性があることに注意してください。
