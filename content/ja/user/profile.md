@@ -1,5 +1,5 @@
 ---
-title: Setting up your profile
+title: プロフィールを設定する
 description: Get started with your new account.
 menu:
   docs:
@@ -7,52 +7,54 @@ menu:
     parent: user
 ---
 
-## Your appearance {#appearance}
+## 外観 {#appearance}
 
 {{< figure src="/assets/image%20%2829%29.png" caption="Profile cards showing display name, avatar, and header" >}}
 
-You can change how your profile appears to others by navigating to Settings &gt; Profile &gt; Appearance.
+他の人から見たあなたのプロフィールがどう見えるか、設定 &gt; プロフィール &gt; 外観 で設定できます。
 
-### Display name {#name}
 
-Your display name is shown to other users before your address. You can set a display name up to 30 characters by default.
+### 表示名 {#name}
 
-### Bio {#bio}
+ほかのユーザーから見たとき、あなたの表示名はあなたのアドレスの前に表示されます。デフォルトでは30文字以内で設定できます。
 
-Your bio is a short description of yourself that is displayed as a note on your profile. You can set a bio of up to 500 characters by default.
+### プロフィール {#bio}
 
-### Avatar {#avatar}
+プロフィールは、あなたのプロフィールページに表示される短い説明文です。デフォルトでは500文字以内で設定できます。
 
-Your avatar is an icon that is displayed next to your posts and is part of your visual identity. You can upload an avatar as a PNG, GIF, or JPG image up to 2MB in size. This image will be downscaled to 400x400.
+### アバター {#avatar}
 
-### Header {#header}
+アバターは、あなたの投稿の隣に表示されるアイコンであり、あなたのビジュアルアイデンティティの一部です。2MBまでのPNG、GIF、JPG画像をアップロードできます。画像は400x400ピクセル以内に縮小されます。
 
-Your header is a banner image shown at the top of your profile, as well as in profile cards used in follow lists and account directories. You can upload a header as a PNG, GIF, or JPG image up to 2MB in size. This image will be downscaled to 1500x500.
+### ヘッダー {#header}
 
-## Profile flags {#flags}
+ヘッダーは、あなたのプロフィールの上部に表示されるバナー画像です。また、フォローリストやアカウントディレクトリのプロフィールカードでも使われます。2MBまでのPNG、GIF、JPG画像をアップロードできます。画像は1500x500ピクセル以内に縮小されます。
 
-You can set certain flags on your profile to let others know how you use Mastodon.
+
+## プロフィールフラグ {#flags}
+
+あなたのプロフィールに特定のフラグを設定することで、あなたがMastodonをどのように使用しているかを他の人に知らせることができます。
 
 ![](/assets/image%20%281%29.png)
 
-### Locked account {#locked}
+### 承認制アカウントにする {#locked}
 
-By locking your account, two things will happen:
+承認制アカウントにすると、次のことが起こります：
 
-* New followers will not be automatically accepted, but will instead require you to manually approve them.
-* A lock icon will be shown to others, to let them know that their follow will not be immediately accepted.
+* 新しいフォロワーは自動的に受け入れられず、あなたの承認が必要になります。
+* 他のユーザーから見たとき、承認制アカウントであるアイコンが表示され、フォローがすぐ受け入れられないことを知らせます。
 
-### Bot account {#bot}
+### これはBotアカウントです {#bot}
 
-Enabling the bot flag will add a bot icon to your profile. This icon will let others know that your profile may perform automated actions, or might not be monitored by a human. Other software may choose to treat bot profiles differently, but Mastodon currently treats the bot flag as a visual indication only.
+Botフラグを有効にすると、あなたのプロフィールにBotアイコンが追加されます。これは自動的にアクションを実行しており、人間が見ていない可能性があることについて他のユーザーに知らせます。他のソフトウェアはBotと設定されたユーザーを特別扱いするかもしれませんが、Mastodonは今のところBotであることを表示することだけに使っています。
 
-### Profile directory {#discoverable}
+### ディレクトリに掲載する {#discoverable}
 
-Opting in to be listed on the profile directory will make your profile discoverable through a feature that allows browsing through profiles.
+プロフィールディレクトリに掲載されるようにオプトインすると、プロフィールを閲覧することができる機能を通じて、あなたのプロフィールを発見できるようになります。
 
-## Profile metadata {#fields}
+## プロフィール補足情報 {#fields}
 
-Profile metadata is a way to add extra information to your profile that is easy to skim. You have 4 rows where you can define the label and the value. For example:
+プロフィール補足情報は、あなたのプロフィールに追加情報を追加し、一目で分かるようにするためのものです。4つの行があり、それぞれラベルと値を定義することができます。たとえば：
 
 | Label | Content |
 | :--- | :--- |
@@ -61,17 +63,17 @@ Profile metadata is a way to add extra information to your profile that is easy 
 | Pronouns | he/him |
 | Website | https://example.com |
 
-It’s completely up to you what you put there. The content can contain mentions, hashtags, custom emojis and links.
+何を載せるかはあなた次第です。値には、ユーザー名、ハッシュタグ、カスタム絵文字、リンクを含めることができます。
 
-### Link verification {#verification}
+### リンク認証 {#verification}
 
-Document-based verification and blue ticks are not possible without a central authority. However, Mastodon can cross-reference the links you put on your profile to prove that you are the real owner of those links. In case one of those links is your personal homepage that is known and trusted, it can serve as the next-best-thing to identity verification.
+ドキュメントベースの認証と青いチェックマークは中央集権でないとできません。しかし、Mastodonは、あなたのプロフィールに貼られたリンクを相互参照して、あなたがそのリンクの本当の所有者であることを証明することができます。それらのリンクのうち1つが、既知で信頼できる個人のホームページである場合、ID認証の次善の策として機能します。
 
-If you put a link in your profile metadata, Mastodon checks if the linked page links back to your Mastodon profile. If so, you get a verification checkmark next to that link, since you are confirmed as the owner.
+プロフィール追加情報にリンクが追加されたとき、MastodonはリンクされたページからあなたのMastodonプロフィールにリンクバックされているか確認します。そのページの所有者であると確認ができた場合、リンクの横に認証マークが表示されます。
 
-Behind the scenes, Mastodon checks for the `rel="me"` attribute on the link back. Likewise, Mastodon puts `rel="me"` on the links within profile metadata.
+技術的には、Mastodonはリンクバックの `rel="me"` 属性をチェックしています。同様に、Mastodonはプロフィールのメタデータ内のリンクに `rel="me"` 属性を付与しています。
 
 {{< hint style="info" >}}
-Because Mastodon can be self-hosted, there is no better way to verify your identity than to host Mastodon on your own domain, which people already trust.
+なぜなら、Mastodonは自身でサーバーを立てられるので、ユーザーが既に信頼している独自のドメインでMastodonをホストするよりも、自身の身元を確認するためのよい方法ではありません。
 {{< /hint >}}
 
