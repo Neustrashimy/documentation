@@ -34,7 +34,7 @@ menu:
 
 他の人があなたの投稿に対してやりとりを行うと、その種類によって通知を受信します。通知カラムではすべての通知を一度に見ることができるほか、以下の種類によってフィルタリングすることができます：
 
-* **返信：** あなたの投稿に誰かが返信したときに受け取ります。
+* **返信:** あなたの投稿に誰かが返信したときに受け取ります。
 * **お気に入り:** あなたの投稿を誰かがお気に入りしたときに受け取ります。
 * **ブースト:** あなたの投稿を誰かがブーストしたときに受け取ります。
 * **アンケート:** あなたが作ったり投票したアンケートの結果が出たときに受け取ります。
@@ -44,47 +44,47 @@ menu:
 
 ![](/assets/image%20%2811%29.png)
 
-As long as you encounter a person within your app’s user interface, e.g. the web interface on your home server, or your mobile app, you can just click “follow” and you won’t notice a difference if that person is on your server or not.
+あなたのサーバー上のウェブインタフェイスやモバイルアプリなど、お使いのアプリのインタフェイス上で人に遭遇したら、「フォロー」をクリックするだけです。その人がどのサーバーに属していても、違いを感じることはありません。
 
-However if you come across someone’s public profile hosted on a different server, there’s an obstacle: That server sees you as just another anonymous visitor. Not to worry! You can simply copy the URL of that profile, or of one of their posts, and then paste that URL into the search function.
+もし、別のサーバーにホストされている公開プロフィールを見つけた場合は、そのサーバーはあなたを匿名の訪問者として見なします。しかし心配する必要はありません。そのプロフィールや投稿のURLをコピーし、検索欄に貼り付けて検索すればよいのです。
 
-If you are visiting a public page on another Mastodon site, see [Using Mastodon outside of your site](external.md#remote-interactions-on-another-mastodon-site).
+他のMastodonサーバー上にあるパブリックページを訪れたときの使い方については、[サイト外でMastodonを使う](external.md#remote-interactions-on-another-mastodon-site) を参照してください。
 
-## Search {#search}
+## 検索 {#search}
 
-{{< figure src="/assets/image%20%2819%29.png" caption="The search function can be accessed from the sidebar." >}}
+{{< figure src="/assets/image%20%2819%29.png" caption="検索機能はサイドバーより利用可能です。" >}}
 
-Mastodon's basic search allows logged-in users to find toots containing a specific hashtag, or to load a user or status directly if they know the URL or address. Searching for a term will show profiles whose username or display name contains that term, as well as hashtags that match or contain that term.
+ログインユーザーに対してMastodonが提供する基本的な検索は、指定されたハッシュタグが含まれる投稿を探すことや、URLやアドレスを用いてユーザーや投稿を読み込むことです。語句で検索すると、ユーザー名や表示名にその語句が含まれるプロフィールと、その語句が含まれているハッシュタグを表示します。
 
-{{< figure src="/assets/image%20%2839%29.png" caption="An example of a toot being loaded directly by its URL." >}}
+{{< figure src="/assets/image%20%2839%29.png" caption="URLから直接投稿を読み込む例" >}}
 
-{{< figure src="/assets/image%20%2823%29.png" caption="An example of accounts returned when searching for &quot;cats&quot;." >}}
+{{< figure src="/assets/image%20%2823%29.png" caption="「cats」が含まれるアカウントを探す例" >}}
 
-{{< figure src="/assets/image%20%2827%29.png" caption="An example of hashtags returned when searching for &quot;cats&quot;." >}}
+{{< figure src="/assets/image%20%2827%29.png" caption="「cats」が含まれるハッシュタグを探す例" >}}
 
-Admins may optionally install full-text search. Mastodon’s full-text search allows logged-in users to find results from their own toots, their favourites, and their mentions. It deliberately does not allow searching for arbitrary strings in the entire database, in order to reduce the risk of abuse by people searching for controversial terms to find people to dogpile.
+管理者は、オプションとして全文検索機能をインストールすることができます。Mastodonの全文検索は、ログインしているユーザー自身の投稿、お気に入り、返信を検索することができます。これは、論争の的になっている用語を検索する人が、それに言及している人々に噛みつくことによる虐待および悪用のリスクを減らすために、サーバー全体に対する任意の文字列の検索を意図的に許可していないためです。
 
-The following operators are supported:
+以下の演算子が使用可能です：
 
-* **"exact phrases"** will try to find the term inside the quote marks. This allows looking only for direct matches, such as `"look at my cluckers"` to find posts explicitly telling you to look at someone's cluckers.
-* **-exclude** will exclude the term prepended by a minus sign. This allows filtering out certain terms, such as `animals -cats` to find posts about animals without posts about cats.
-* **+include** will include the term after the plus sign. This allows searching for multiple terms that must be included, such as `cat +dog` to find posts about both cats and dogs.
+* **"完全一致"** は、ダブルクォートで囲まれた語句を探そうとします。これは完全に一致するものだけを検索します。たとえば `"look at my cluckers"` は、誰かのクラッカーを見るように言っている投稿を見つけます。
+* **-除外** は、マイナス記号が付けられた単語を除外します。これにより、`animals -cats`のように特定の語句をフィルタリングして、ネコを含まない動物に関する投稿を見つけることができます。
+* **+含める** は、プラス記号が付けられた単語を含めます。これにより、`cat +dog`のように、ネコとイヌの両方が含まれる投稿を探すことができます。
 
-## Direct conversations {#direct}
+## ダイレクトメッセージ {#direct}
 
 {{< figure src="/assets/image%20%2812%29.png" caption="A list of conversations containing direct messages." >}}
 
-In Mastodon, direct messages are simply toots that have the "direct" visibility selected. Visibility can be selected per-post, which allows changing the privacy level later in a thread. The direct messages column currently shows a list of all conversations containing a direct post. Clicking on a conversation will load the associated thread.
+Mastodonでは、公開範囲として「ダイレクト」が選ばれた投稿をダイレクトメッセージとしてシンプルに扱います。公開範囲は投稿ごとに選ぶことができ、スレッドのプライバシーレベルを選択することができます。ダイレクトメッセージカラムは、現在のところすべてのダイレクトメッセージのリストを表示します。会話をクリックすると、関連するスレッドを読み込みます。
 
 {{< figure src="/assets/image%20%2857%29.png" caption="A direct message in a thread." >}}
 
-## List timelines {#lists}
+## リストタイムライン {#lists}
 
-Lists are subsets of your home timeline. You can create a list, give it a name, and add users that you follow to that list.
+リストはあなたのホームタイムラインのサブセットです。リストを作り、名前を付け、フォロワーを追加することができます。
 
 ![](/assets/image%20%2828%29.png)
 
-Opening a list will load that list's timeline. List timelines contain only posts by members of that list, as well as replies to you or to other members of the list.
+リストを開くと、そのリストのタイムラインを開きます。リストタイムラインはリストに含まれたメンバーの投稿と返信が含まれます。
 
 {{< figure src="/assets/image%20%285%29.png" caption="A list timeline" >}}
 
