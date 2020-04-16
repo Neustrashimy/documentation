@@ -1,5 +1,5 @@
 ---
-title: Signing up for an account
+title: アカウントを作る
 description: Find your perfect community.
 menu:
   docs:
@@ -7,52 +7,50 @@ menu:
     parent: user
 ---
 
-## Choosing a website {#picker}
+## ウェブサイトを選ぶ {#picker}
 
-You have to choose a website to sign up on, like you would choose an e-mail provider, or a World of Warcraft realm for your new character. The website will be your service provider, hosting your account, your profile, and your home feed.
+アカウントを作成するウェブサイトを選ぶ必要があります。電子メールプロバイダを選んだり、World of Warcraftで新しいキャラクターを作るときに似ています。選んだウェブサイトは、あなたのアカウントやプロフィール、ホームフィードをホストするサービスプロバイダーになります。
 
 {{< hint style="info" >}}
-You can [browse a list of servers by categories and languages on joinmastodon.org](https://joinmastodon.org/#getting-started).
+[joinmastodon.orgで、カテゴリーや言語ごとのサーバーリストを閲覧](https://joinmastodon.org/#getting-started) することができます。
 {{< /hint >}}
 
-### Understanding a website's policies {#tos}
+### ウェブサイトのポリシーを理解する {#tos}
 
-Before you sign up for a service, it is important to understand its policies and terms of use. A Mastodon website will usually have its policies listed on the `/about/more` page, which can be found by clicking "learn more" on the landing page while not logged in to that website.
+サービスにアカウントを作成する前に、それの利用規約やポリシーを理解することは重要です。Mastodonは一般的に、ランディングページの「このサーバーについて」リンクを辿った先にある `/about/more` ページにポリシーを掲載しています。これは非ログイン状態でも見ることができます。
 
-### Signup modes {#signup}
+### アカウント作成の種類 {#signup}
 
-Mastodon allows website administrators to set one of three different signup modes: open signups, invites, and approval mode.
+Mastodonは管理者に3つの異なるアカウント作成手順を提供しています： 誰でも登録可能、招待リンク制、承認制。
 
-#### Open signup {#open}
+#### 誰でも登録可能 {#open}
 
-Some websites may allow you to register immediately -- simply fill out the registration with your username, email address, and password, and you can start using your account.
+いくつかのウェブサイトは即時登録が可能です。シンプルにユーザ名、メールアドレス、パスワードを登録することで、アカウントを使い始めることができます。
 
-#### Server invites {#invite}
+#### 招待制 {#invite}
 
-Some websites disable the registration form, and instead require invite links to be generated and shared in order to allow people to register.
+いくつかのウェブサイトでは登録フォームが無効になっており、代わりに招待リンクを生成して共有することで登録できるようにしています。
 
-#### Approval-based registration {#approval}
+#### 承認制 {#approval}
 
-Some websites allow you to fill out a registration form, but with an additional form entry for mentioning why you want to join that website. Once you submit the form, your account must be approved by a moderator before you can start using it.
+いくつかのウェブサイトでは、登録フォームに記入が必要になる他、そのウェブサイトに参加したい理由を書くための追加のフォームがあります。アカウントを使い始めるには、登録を行ったあと、モデレーターによる承認が必要になります。
 
-## Your username and your domain {#address}
+## ユーザー名とドメイン {#address}
 
-Mastodon usernames actually consist of two parts:
+Mastodonのユーザー名は2つのパーツに分かれています：
 
-* The local username, e.g. `alice`
-* And the domain of the website, e.g. `example.com`
+* ローカルユーザー名。たとえば `alice`
+* ウェブサイトのドメイン。たとえばAnd the domain of the website, e.g. `example.com`
 
-Just like an e-mail address. For convenience sake, Mastodon allows you to skip the second part when addressing people on the same server as you, but you have to keep in mind when sharing your username with other people, you need to include the domain or they won’t be able to find you as easily.
+電子メールアドレスに似ています。利便性のため、Mastodonでは同じサーバーに属する人々を表すときは2番目の部分を省くことができます。しかし他の人にユーザー名を教えるときは、すぐ見つけられるようにドメイン部分を含める必要があることに注意してください。
 
 |  |  |
 | :--- | :--- |
-| I’m @alice on Mastodon! | Wrong |
-| I’m @alice@example.com on Mastodon! | Correct |
-| I'm https://example.com/@alice on Mastodon! | Correct |
+| わたしはMastodonにいる @alice です！ | 誤り |
+| わたしはMastodonにいる @alice@example.com です！ | 正解 |
+| わたしはMastodonにいる https://example.com/@alice です！ | 正解 |
 
-The search form in Mastodon will find people either with the above address form, or the link to the person’s profile, so you can share that instead if you prefer.
+Mastodonの検索フォームでは、上記のアドレス形式か、その人のプロフィールへのリンクのどちらかで人を見つけることができます。
 
-The same username _can_ be registered on different servers -- there is no way to claim all of them ahead of time. Just like with e-mail, you should not expect `alice@outlook.com` to be the same person as `alice@gmail.com` or `alice@yahoo.com`.
-
-
+異なるサーバーであれば、同じユーザー名で登録することが _可能です_ 。それについて先に主張する方法はありません。電子メールのように、`alice@outlook.com` が `alice@gmail.com` や `alice@yahoo.com` と同一人物であることを期待してはいけません。
 
