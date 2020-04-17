@@ -1,5 +1,5 @@
 ---
-title: Dealing with unwanted content
+title: 不要なコンテンツへの対処法
 description: Control what you see, for a more comfortable social media experience.
 menu:
   docs:
@@ -7,86 +7,86 @@ menu:
     parent: user
 ---
 
-## Filtering posts {#filters}
+## 投稿のフィルタリング {#filters}
 
-It is possible to filter statuses for specific keywords and phrases so that they can be hidden automatically.
+投稿を特定のキーワードやフレーズでフィルタリングすることができ、それらは自動的に隠されます。
 
 {{< figure src="/assets/image%20%2848%29.png" caption="A sample of active filters for various keywords in different contexts." >}}
 
-To create or manage your filters, go to Settings &gt; Filters. The "Add new filter" button will let you create a new filter, and existing filters can be edited or deleted. Your existing filters will be summarized in a table.
+フィルターを作成したり管理するには、設定 &gt; フィルター から行います。「新規フィルターを追加」ボタンを押すと、新しいフィルターを作ることができます。既存のフィルターは編集したり削除できます。既存のフィルターは表形式にまとめられます。
 
 {{< figure src="/assets/image%20%2814%29.png" caption="Filters can have an expiry date, specific contexts, server-side drop, and use word boundaries." >}}
 
-Filters have the following settings:
+フィルターにはいくつか設定があります：
 
-### Keyword or phrase {#filter-phrase}
+### キーワードまたはフレーズ {#filter-phrase}
 
-This is the string that will be matched. The keyword will be searched for in any status's content, including CW, media descriptions, and poll options.
+一致させる文字列です。キーワードは、CWやメディアの説明文、アンケートのオプションを含む、すべての投稿の内容から探されます。
 
-### Expire after {#filter-expire}
+### 有効期限 {#filter-expire}
 
-Optionally only apply the filter for a limited amount of time. Expired filters are not automatically deleted, but can be reactivated by setting a new expiry date \(or changing it back to "never" expire\).
+オプションですが、フィルターを適用する期間を設定できます。期限が切れたフィルターは自動的に削除されず、新しい有効期限を設定することで再度有効にできます（もしくは「無期限」に戻すこともできます）。
 
-### Filter contexts {#filter-context}
+### 除外対象 {#filter-context}
 
-Choose where the filter will be applied:
+フィルターを適用する対象を選べます：
 
-* Home timeline = matching statuses will be removed from your home feed
-* Notifications = matching notifications will not be shown
-* Public timelines = matching statuses will not appear in local/federated timelines
-* Conversations = matching statuses will be hidden in threads and detailed views
+* ホームタイムライン = 一致した投稿をホームフィードから除きます
+* 通知 = 一致した通知が表示されなくなります
+* 公開タイムライン = 一致した投稿がローカル・連合タイムラインに表示されなくなります
+* 会話 = 一致した投稿はスレッドと詳細表示画面から隠されます
 
-### Drop instead of hide {#filter-drop}
+### 隠すのではなく除外する {#filter-drop}
 
-Filtering is usually done client-side, so that disabling a filter will cause filtered statuses to be visible again. However, if you enable "drop instead of hide", any matching statuses will be disappear completely and will never be delivered to your home or notifications.
+フィルタリングは通常、クライアント側で行われます。そのため、フィルターを無効にするとフィルタリングされていた投稿を再び見ることができます。「隠すのではなく除外する」を有効にした場合、一致した投稿はホームフィードや通知に完全に表示されなくなります。
 
-### Whole word {#filter-whole}
+### 単語全体にマッチ {#filter-whole}
 
-Filters normally apply to any status that contains the included characters, regardless of whether they are in the middle of a word. Enabling "whole word" will only apply the filter if the keyword is surrounded by spaces or other non-alphanumeric characters.
+フィルターは通常、単語の位置に関わらず、その文字列を含むすべての投稿に適用されます。「単語全体にマッチ」を有効にすると、キーワードがスペースや英数字以外の文字で囲まれている場合にのみフィルターが適用されます。
 
-## User-level actions {#blocking-and-muting}
+## ユーザー側の操作 {#blocking-and-muting}
 
 {{< figure src="/assets/image%20%2824%29.png" caption="The user dropdown menu offers various actions." >}}
 
-### Hiding boosts {#hide-boosts}
+### ブーストの非表示 {#hide-boosts}
 
-If you hide boosts from someone, you won’t see their boosts in your home feed. This option only appears on users who you are currently following.
+誰かのブーストを非表示にした場合、彼らのブーストはあなたのホームフィードに表示されなくなります。このオプションはあなたがフォロー中のユーザーにのみ適用できます。
 
-### Muting {#mute}
+### ミュート {#mute}
 
 {{< figure src="/assets/image%20%2852%29.png" caption="Sample of muted accounts." >}}
 
-When muting, you have the option to mute notifications from them or not. Muting without muting notifications hides the user from your view:
+ミュートを行う際は、ミュートしたユーザーからの通知を受け取るかどうかを選ぶことができます。通知をミュートせずミュートを行った場合の動作は：
 
-* You won’t see the user in your home feed
-* You won’t see other people boosting the user
-* You won’t see other people mentioning the user
-* You won’t see the user in public timelines
+* そのユーザーはホームフィードでは見えません
+* 誰かがそのユーザーの投稿をブーストしても見えません
+* 誰かがそのユーザーに返信をしても見えません
+* そのユーザーは公開タイムラインに現れません
 
-If you choose to also mute notifications from them, you will additionally not see notifications from that user.
+もし通知をミュートする選択をした場合は、さらにそのユーザーからの通知を受け取らなくなります。
 
-The user has no way of knowing they have been muted.
+ユーザーには、自身がミュートされているかを知る術がありません。
 
-### Blocking {#block}
+### ブロック {#block}
 
 {{< figure src="/assets/image%20%2836%29.png" caption="Sample of blocked accounts." >}}
 
-Blocking hides a user from your view:
+ブロックすると、あなたの画面から以下のものが隠されます：
 
-* You won’t see the user in your home feed
-* You won’t see other people boosting the user
-* You won’t see other people mentioning the user
-* You won’t see the user in public timelines
-* You won’t see notifications from that user
+* そのユーザーはホームフィードでは見えません
+* 誰かがそのユーザーの投稿をブーストしても見えません
+* 誰かがそのユーザーに返信をしても見えません
+* そのユーザーは公開タイムラインに現れません
+* そのユーザーからの通知を受け取りません
 
-Additionally, on the blocked user’s side:
+さらに、ブロックされたユーザー側から見たとき：
 
-* The user is forced to unfollow you
-* The user cannot follow you
-* The user won’t see other people’s boosts of you
-* The user won’t see you in public timelines
+* あなたを強制的にアンフォローします
+* あなたをフォローできなくなります
+* 誰かがあなたの投稿をブーストしても見えません
+* あなたは公開タイムラインに現れません
 
-If you and the blocked user are on the same server, the blocked user will not be able to view your posts on your profile while logged in.
+もし、あなたとブロックしたユーザーが同じサーバーに属していたとき、ブロックされたユーザーからは、ログイン中はあなたの投稿やプロフィールを見ることができなくなります。
 
 ### Hiding an entire server {#hide-domain}
 
